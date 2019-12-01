@@ -10,7 +10,7 @@ export default function Routes() {
       <Switch>
         <Route path="/" exact component={Report} />
         <Route path="/report" exact component={Report} />
-        <Route path="/report-mensal" exact component={ReportMensal} />
+        <Route path="/report-mensal/:report" exact component={ReportMensal} />
       </Switch>
     </BrowserRouter>
   );

@@ -127,7 +127,9 @@ export default class Report extends Component {
     }
 
     if (!verifyAfter && !verifyBefore) {
-      const loginpath = `/report-mensal`;
+      const noSpacesSite = this.state.siteselected.replace(/\s/g, '');
+      const reportstring = `${this.state.year.trim()}${this.state.month.trim()}${noSpacesSite.trim()}`;
+      const loginpath = `/report-mensal/${reportstring}`;
       this.props.history.push(loginpath);
     }
   }
