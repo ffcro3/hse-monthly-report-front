@@ -90,6 +90,12 @@ export default class Report extends Component {
 
     const response = await api.get(`/report/${actualReport}`);
 
+    this.setState({
+      reportmensal: actualReport,
+      reportData: JSON.parse(JSON.stringify(response.data[0])),
+      fullPreventive: JSON.parse(JSON.stringify(response.data[3])),
+    });
+
     console.log(response);
 
     window.beforeunload = e => {
@@ -99,123 +105,154 @@ export default class Report extends Component {
     };
 
     this.setState({
-      reportmensal: actualReport,
-      reportData: JSON.parse(JSON.stringify(response.data[0])),
-      fullEnvironment: JSON.parse(JSON.stringify(response.data[2])),
-    });
-
-    this.setState({
-      pyramidexpect: this.state.fullPreventive.pyramidexpect
-        ? ''
-        : this.state.fullPreventive.pyramidexpect,
-      pyramiddone: this.state.fullPreventive.pyramiddone
-        ? ''
-        : this.state.fullPreventive.pyramiddone,
-      resolutionexpect: this.state.fullPreventive.resolutionexpect
-        ? ''
-        : this.state.fullPreventive.resolutionexpect,
-      resolutiondone: this.state.fullPreventive.resolutiondone
-        ? ''
-        : this.state.fullPreventive.resolutiondone,
-      bbsexpect: this.state.fullPreventive.bbsexpect
-        ? ''
-        : this.state.fullPreventive.bbsexpect,
-      bbsdone: this.state.fullPreventive.bbsdone
-        ? ''
-        : this.state.fullPreventive.bbsdone,
-      safebbsexpect: this.state.fullPreventive.safebbsexpect
-        ? ''
-        : this.state.fullPreventive.safebbsexpect,
-      safebbsdone: this.state.fullPreventive.safebbsdone
-        ? ''
-        : this.state.fullPreventive.safebbsdone,
-      inpectionsexpect: this.state.fullPreventive.inpectionsexpect
-        ? ''
-        : this.state.fullPreventive.inpectionsexpect,
-      inpectionsdone: this.state.fullPreventive.inpectionsdone
-        ? ''
-        : this.state.fullPreventive.inpectionsdone,
-      briefingexpect: this.state.fullPreventive.briefingexpect
-        ? ''
-        : this.state.fullPreventive.briefingexpect,
-      briefingdone: this.state.fullPreventive.briefingdone
-        ? ''
-        : this.state.fullPreventive.briefingdone,
-      actionplanexpect: this.state.fullPreventive.actionplanexpect
-        ? ''
-        : this.state.fullPreventive.actionplanexpect,
-      actionplandone: this.state.fullPreventive.actionplandone
-        ? ''
-        : this.state.fullPreventive.actionplandone,
-      pasexpect: this.state.fullPreventive.pasexpect
-        ? ''
-        : this.state.fullPreventive.pasexpect,
-      pasdone: this.state.fullPreventive.pasdone
-        ? ''
-        : this.state.fullPreventive.pasdone,
-      trainingexpect: this.state.fullPreventive.trainingexpect
-        ? ''
-        : this.state.fullPreventive.trainingexpect,
-      trainindone: this.state.fullPreventive.trainindone
-        ? ''
-        : this.state.fullPreventive.trainindone,
-      examsexpect: this.state.fullPreventive.examsexpect
-        ? ''
-        : this.state.fullPreventive.examsexpect,
-      examsdone: this.state.fullPreventive.examsdone
-        ? ''
-        : this.state.fullPreventive.examsdone,
-      wiexpect: this.state.fullPreventive.wiexpect
-        ? ''
-        : this.state.fullPreventive.wiexpect,
-      widone: this.state.fullPreventive.widone
-        ? ''
-        : this.state.fullPreventive.widone,
-      checklistexpect: this.state.fullPreventive.checklistexpect
-        ? ''
-        : this.state.fullPreventive.checklistexpect,
-      checklistdone: this.state.fullPreventive.checklistdone
-        ? ''
-        : this.state.fullPreventive.checklistdone,
-      driverexpect: this.state.fullPreventive.driverexpect
-        ? ''
-        : this.state.fullPreventive.driverexpect,
-      driverdone: this.state.fullPreventive.driverdone
-        ? ''
-        : this.state.fullPreventive.driverdone,
-      maintenanceexpect: this.state.fullPreventive.maintenanceexpect
-        ? ''
-        : this.state.fullPreventive.maintenanceexpect,
-      maintenancedone: this.state.fullPreventive.maintenancedone
-        ? ''
-        : this.state.fullPreventive.maintenancedone,
-      emergencyequipexpect: this.state.fullPreventive.emergencyequipexpect
-        ? ''
-        : this.state.fullPreventive.emergencyequipexpect,
-      emergencyequipdone: this.state.fullPreventive.emergencyequipdone
-        ? ''
-        : this.state.fullPreventive.emergencyequipdone,
-      actionontimeexpect: this.state.fullPreventive.actionontimeexpect
-        ? ''
-        : this.state.fullPreventive.actionontimeexpect,
-      aciontontimedone: this.state.fullPreventive.aciontontimedone
-        ? ''
-        : this.state.fullPreventive.aciontontimedone,
-      tifrexpect: this.state.fullPreventive.tifrexpect
-        ? ''
-        : this.state.fullPreventive.tifrexpect,
-      tifrdone: this.state.fullPreventive.tifrdone
-        ? ''
-        : this.state.fullPreventive.tifrdone,
-      ltifrexpect: this.state.fullPreventive.ltifrexpect
-        ? ''
-        : this.state.fullPreventive.ltifrexpect,
-      ltifrdone: this.state.fullPreventive.ltifrdone
-        ? ''
-        : this.state.fullPreventive.ltifrdone,
-      finalresult: this.state.fullPreventive.finalresult
-        ? ''
-        : this.state.fullPreventive.finalresult,
+      pyramidexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.pyramidexpect,
+      pyramiddone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.pyramiddone,
+      resolutionexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.resolutionexpect,
+      resolutiondone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.resolutiondone,
+      bbsexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.bbsexpect,
+      bbsdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.bbsdone,
+      safebbsexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.safebbsexpect,
+      safebbsdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.safebbsdone,
+      inpectionsexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.inpectionsexpect,
+      inpectionsdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.inpectionsdone,
+      briefingexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.briefingexpect,
+      briefingdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.briefingdone,
+      actionplanexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.actionplanexpect,
+      actionplandone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.actionplandone,
+      pasexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.pasexpect,
+      pasdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.pasdone,
+      trainingexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.trainingexpect,
+      trainindone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.trainindone,
+      examsexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.examsexpect,
+      examsdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.examsdone,
+      wiexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.wiexpect,
+      widone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.widone,
+      checklistexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.checklistexpect,
+      checklistdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.checklistdone,
+      driverexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.driverexpect,
+      driverdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.driverdone,
+      maintenanceexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.maintenanceexpect,
+      maintenancedone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.maintenancedone,
+      emergencyequipexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.emergencyequipexpect,
+      emergencyequipdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.emergencyequipdone,
+      actionontimeexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.actionontimeexpect,
+      aciontontimedone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.aciontontimedone,
+      tifrexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.tifrexpect,
+      tifrdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.tifrdone,
+      ltifrexpect:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.ltifrexpect,
+      ltifrdone:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.ltifrdone,
+      finalresult:
+        this.state.fullPreventive === null
+          ? 0
+          : this.state.fullPreventive.finalresult,
     });
 
     console.log(this.state.fullEnvironment);
@@ -231,6 +268,340 @@ export default class Report extends Component {
     await this.setState({
       error: null,
     });
+  }
+
+  async calculatePreventinveIndex() {
+    const {
+      pyramidexpect,
+      pyramiddone,
+      resolutionexpect,
+      resolutiondone,
+      bbsexpect,
+      bbsdone,
+      safebbsexpect,
+      safebbsdone,
+      inpectionsexpect,
+      inpectionsdone,
+      briefingexpect,
+      briefingdone,
+      actionplanexpect,
+      actionplandone,
+      pasexpect,
+      pasdone,
+      trainingexpect,
+      trainindone,
+      examsexpect,
+      examsdone,
+      wiexpect,
+      widone,
+      checklistexpect,
+      checklistdone,
+      driverexpect,
+      driverdone,
+      maintenanceexpect,
+      maintenancedone,
+      emergencyequipexpect,
+      emergencyequipdone,
+      actionontimeexpect,
+      aciontontimedone,
+      tifrexpect,
+      tifrdone,
+      ltifrexpect,
+      ltifrdone,
+      finalresult,
+    } = this.state;
+
+    // REGISTRO DE PIRÂMIDES
+    if (pyramiddone >= pyramidexpect) {
+      await this.setState({
+        finalresult: 0.05,
+        fullPreventive: {
+          finalresult: 0.05,
+        },
+      });
+    } else {
+      const calc = (pyramiddone / pyramidexpect) * 0.025;
+
+      await this.setState({
+        finalresult: calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // RESOLUÇÃO DE PIRÂMIDES
+    if (resolutiondone >= resolutionexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.1,
+      });
+    } else {
+      const calc = (resolutiondone / resolutionexpect) * 0.05;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // REALIZAÇÃO DE BBS
+    if (bbsdone >= bbsexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.1,
+      });
+    } else {
+      const calc = (bbsdone / bbsexpect) * 0.05;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // BBS SEGURO
+    if (safebbsdone >= safebbsexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = (safebbsdone / safebbsexpect) * 0.025;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // INSPEÇÕES PROGRAMADAS
+    if (inpectionsdone >= inpectionsexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = (inpectionsexpect / inpectionsdone) * 0.025;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // BRIEFINGS COM TEMAS DE HSE
+    if (briefingdone >= briefingexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = (briefingexpect / briefingdone) * 0.025;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // PLANO DE AÇÃO - INSPEÇÕES PROGRAMADAS
+    if (actionplandone >= actionplanexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.1,
+      });
+    } else {
+      const calc = (actionplanexpect / actionplandone) * 0.05;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // PLANO DE AÇÃO DO PAS %
+    if (pasdone >= pasexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = (this.state.pasexpect / this.state.pasdone) * 0.025;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // TREINAMENTOS DE HSE
+    if (trainindone >= trainingexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = (trainingexpect / trainindone) * 0.025;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // EXAMES MÉDICOS
+    if (examsdone >= examsexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.1,
+      });
+    } else {
+      const calc = 0;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // TREINAMENTO NAS WIS
+    if (widone >= wiexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.1,
+      });
+    } else {
+      const calc = 0;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // CHECKLIST DE EQUIPAMENTOS
+    if (checklistdone >= checklistexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = 0;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // IDENTIFICAÇÃOD O CONDUTOR
+    if (driverdone >= driverexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = 0;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // MANUTENÇÃO PREVENTIVA
+    if (maintenancedone >= maintenanceexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = (maintenancedone / maintenanceexpect) * 0.025;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // SIMLADOS DE EMERGÊNCIA
+    if (emergencyequipdone >= emergencyequipexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0.05,
+      });
+    } else {
+      const calc = 0;
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // PLANO DE AÇÃO IP
+    if (aciontontimedone >= actionontimeexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0,
+      });
+    } else {
+      const calc = (aciontontimedone / actionontimeexpect) * 0.1 - 0.1;
+
+      this.setState({
+        finalresult: this.state.finalresult + calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) + calc,
+        },
+      });
+    }
+
+    // TIFR
+    if (tifrdone <= tifrexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0,
+      });
+    } else {
+      const calc = -0.1;
+
+      this.setState({
+        finalresult: this.state.finalresult - calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) - calc,
+        },
+      });
+    }
+
+    // LTIFR
+    if (ltifrdone <= ltifrexpect) {
+      this.setState({
+        finalresult: this.state.finalresult + 0,
+      });
+    } else {
+      const calc = -0.1;
+
+      this.setState({
+        finalresult: this.state.finalresult - calc,
+        fullPreventive: {
+          finalresult: Number(this.state.finalresult) - calc,
+        },
+      });
+    }
+
+    console.log(`Resultado: ${1 - this.state.finalresult}`);
   }
 
   async handleForm() {
@@ -351,14 +722,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="pyramidexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           pyramidexpect: e.target.value,
                           fullPreventive: {
                             pyramidexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -369,14 +741,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="pyramiddone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           pyramiddone: e.target.value,
                           fullPreventive: {
                             pyramiddone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.pyramiddone
                       }
@@ -391,14 +764,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="resolutionexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           resolutionexpect: e.target.value,
                           fullPreventive: {
                             resolutionexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -411,18 +785,19 @@ export default class Report extends Component {
                       Realizado
                     </LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
-                          resolutionexpect: e.target.value,
+                          resolutiondone: e.target.value,
                           fullPreventive: {
-                            resolutionexpect: e.target.value,
+                            resolutiondone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
-                          : fullPreventive.resolutionexpect
+                          : fullPreventive.resolutiondone
                       }
                     />
                   </FormGroup>
@@ -435,14 +810,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="bbsexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           bbsexpect: e.target.value,
                           fullPreventive: {
                             bbsexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.bbsexpect
                       }
@@ -451,14 +827,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="bbsdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           bbsdone: e.target.value,
                           fullPreventive: {
                             bbsdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.bbsdone
                       }
@@ -473,14 +850,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="safebbsexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           safebbsexpect: e.target.value,
                           fullPreventive: {
                             safebbsexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -491,14 +869,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="safebbsdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           safebbsdone: e.target.value,
                           fullPreventive: {
                             safebbsdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.safebbsdone
                       }
@@ -513,14 +892,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="inpectionsexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           inpectionsexpect: e.target.value,
                           fullPreventive: {
                             inpectionsexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -531,14 +911,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="inpectionsdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           inpectionsdone: e.target.value,
                           fullPreventive: {
                             inpectionsdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -555,14 +936,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="briefingexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           briefingexpect: e.target.value,
                           fullPreventive: {
                             briefingexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -573,14 +955,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="briefingdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           briefingdone: e.target.value,
                           fullPreventive: {
                             briefingdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -597,14 +980,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="actionplanexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           actionplanexpect: e.target.value,
                           fullPreventive: {
                             actionplanexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -616,14 +1000,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="actionplandone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           actionplandone: e.target.value,
                           fullPreventive: {
                             actionplandone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -641,14 +1026,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="pasexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           pasexpect: e.target.value,
                           fullPreventive: {
                             pasexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.pasexpect
                       }
@@ -658,14 +1044,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="pasdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           pasdone: e.target.value,
                           fullPreventive: {
                             pasdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.pasdone
                       }
@@ -681,14 +1068,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="trainingexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           trainingexpect: e.target.value,
                           fullPreventive: {
                             trainingexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -700,14 +1088,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="trainindone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           trainindone: e.target.value,
                           fullPreventive: {
                             trainindone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.trainindone
                       }
@@ -723,14 +1112,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="examsexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           examsexpect: e.target.value,
                           fullPreventive: {
                             examsexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.examsexpect
                       }
@@ -740,14 +1130,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="examsdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           examsdone: e.target.value,
                           fullPreventive: {
                             examsdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.examsdone
                       }
@@ -763,14 +1154,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="wiexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           wiexpect: e.target.value,
                           fullPreventive: {
                             wiexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.wiexpect
                       }
@@ -779,14 +1171,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="widone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           widone: e.target.value,
                           fullPreventive: {
                             widone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.widone
                       }
@@ -801,14 +1194,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="checklistexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           checklistexpect: e.target.value,
                           fullPreventive: {
                             checklistexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -819,14 +1213,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="checklistdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           checklistdone: e.target.value,
                           fullPreventive: {
                             checklistdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -843,14 +1238,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="driverexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           driverexpect: e.target.value,
                           fullPreventive: {
                             driverexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -861,14 +1257,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="driverdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           driverdone: e.target.value,
                           fullPreventive: {
                             driverdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.driverdone
                       }
@@ -885,14 +1282,15 @@ export default class Report extends Component {
                       Esperado
                     </LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           maintenanceexpect: e.target.value,
                           fullPreventive: {
                             maintenanceexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -903,14 +1301,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="maintenancedone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           maintenancedone: e.target.value,
                           fullPreventive: {
                             maintenancedone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -929,14 +1328,15 @@ export default class Report extends Component {
                       Esperado
                     </LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           emergencyequipexpect: e.target.value,
                           fullPreventive: {
                             emergencyequipexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -950,14 +1350,15 @@ export default class Report extends Component {
                       Realizado
                     </LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           emergencyequipdone: e.target.value,
                           fullPreventive: {
                             emergencyequipdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -977,14 +1378,15 @@ export default class Report extends Component {
                       Esperado
                     </LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           actionontimeexpect: e.target.value,
                           fullPreventive: {
                             actionontimeexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -997,14 +1399,15 @@ export default class Report extends Component {
                       Realizado
                     </LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           aciontontimedone: e.target.value,
                           fullPreventive: {
                             aciontontimedone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null
                           ? 0
@@ -1021,14 +1424,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="tifrexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           tifrexpect: e.target.value,
                           fullPreventive: {
                             tifrexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.tifrexpect
                       }
@@ -1037,14 +1441,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="tifrdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           tifrdone: e.target.value,
                           fullPreventive: {
                             tifrdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.tifrdone
                       }
@@ -1059,14 +1464,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="ltifrexpect">Esperado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           ltifrexpect: e.target.value,
                           fullPreventive: {
                             ltifrexpect: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.ltifrexpect
                       }
@@ -1075,14 +1481,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="ltifrdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={e =>
+                      onChange={async e => {
                         this.setState({
                           ltifrdone: e.target.value,
                           fullPreventive: {
                             ltifrdone: e.target.value,
                           },
-                        })
-                      }
+                        });
+                        await this.calculatePreventinveIndex();
+                      }}
                       value={
                         fullPreventive === null ? 0 : fullPreventive.ltifrdone
                       }
@@ -1091,7 +1498,16 @@ export default class Report extends Component {
                 </Row>
 
                 <IPContainer>
-                  <h2>Resultado Final: {fullPreventive.finalresult}</h2>
+                  <h2>
+                    Resultado Final: {` `}
+                    {fullPreventive === null
+                      ? 0
+                      : 1 -
+                        parseFloat(
+                          this.state.fullPreventive.finalresult
+                        ).toFixed(2)}{' '}
+                    %
+                  </h2>
                 </IPContainer>
                 <FooterContainer>
                   {page <= 1 ? (
