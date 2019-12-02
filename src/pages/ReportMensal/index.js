@@ -36,27 +36,27 @@ export default class Report extends Component {
     fullMonthly: [],
     reportData: [],
     page: 1,
-    efectives: null,
-    lta: null,
-    daysaway: null,
-    rwc: null,
-    daystransfer: null,
-    mtc: null,
-    fac: null,
-    temporary: null,
-    illnessaway: null,
-    illnesstransfer: null,
-    materialincidenthigh: null,
-    materialincidentlow: null,
-    hoursworked: null,
-    hourstraining: null,
-    hoursbriefing: null,
-    incidenthigh: null,
-    incidentlow: null,
-    incidentpath: null,
-    incidentenvironment: null,
-    lastincident: null,
-    effectiveness: null,
+    efectives: '',
+    lta: '',
+    daysaway: '',
+    rwc: '',
+    daystransfer: '',
+    mtc: '',
+    fac: '',
+    temporary: '',
+    illnessaway: '',
+    illnesstransfer: '',
+    materialincidenthigh: '',
+    materialincidentlow: '',
+    hoursworked: '',
+    hourstraining: '',
+    hoursbriefing: '',
+    incidenthigh: '',
+    incidentlow: '',
+    incidentpath: '',
+    incidentenvironment: '',
+    lastincident: '',
+    effectiveness: '',
   };
 
   async componentDidMount() {
@@ -74,6 +74,103 @@ export default class Report extends Component {
       reportData: JSON.parse(JSON.stringify(response.data[0])),
       fullMonthly: JSON.parse(JSON.stringify(response.data[1])),
     });
+
+    this.setState({
+      efectives:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).efectives,
+      lta:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).lta,
+      daysaway:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).daysaway,
+      rwc:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).rwc,
+      daystransfer:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).daystransfer,
+      mtc:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).mtc,
+      fac:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).fac,
+      temporary:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).temporary,
+      illnessaway:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).illnessaway,
+      illnesstransfer:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).illnesstransfer,
+      materialincidenthigh:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).materialincidenthigh,
+      materialincidentlow:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).materialincidentlow,
+      hoursworked:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).hoursworked,
+      hourstraining:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).hourstraining,
+      hoursbriefing:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).hoursbriefing,
+      incidenthigh:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).incidenthigh,
+      incidentlow:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).incidentlow,
+      incidentpath:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).incidentpath,
+      incidentenvironment:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).incidentenvironment,
+      lastincident:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).lastincident,
+      effectiveness:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).effectiveness,
+    });
+  }
+
+  // Add a listener to prevent browser page refresh
+  componentWillMount() {
+    onbeforeunload = e => "Don't leave";
+  }
+
+  // Clear listener
+  componentWillUnmount() {
+    onbeforeunload = null;
   }
 
   async fixDateError() {
@@ -113,6 +210,9 @@ export default class Report extends Component {
       lastincident: this.state.lastincident,
       effectiveness: this.state.effectiveness,
     });
+
+    const loginpath = `/report-mensal/environment/${this.state.actualReport}`;
+    this.props.history.push(loginpath);
   }
 
   render() {
@@ -186,9 +286,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           efectives: e.target.value,
+                          fullMonthly: {
+                            efectives: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.efectives}
+                      value={fullMonthly === null ? 0 : fullMonthly.efectives}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -199,9 +302,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           temporary: e.target.value,
+                          fullMonthly: {
+                            temporary: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.temporary}
+                      value={fullMonthly === null ? 0 : fullMonthly.temporary}
                     />
                   </FormGroup>
                 </Row>
@@ -213,9 +319,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           lta: e.target.value,
+                          fullMonthly: {
+                            lta: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.lta}
+                      value={fullMonthly === null ? 0 : fullMonthly.lta}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -224,9 +333,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           daysaway: e.target.value,
+                          fullMonthly: {
+                            daysaway: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.daysaway}
+                      value={fullMonthly === null ? 0 : fullMonthly.daysaway}
                     />
                   </FormGroup>
                 </Row>
@@ -238,9 +350,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           rwc: e.target.value,
+                          fullMonthly: {
+                            rwc: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.rwc}
+                      value={fullMonthly === null ? 0 : fullMonthly.rwc}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -251,9 +366,14 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           daystransfer: e.target.value,
+                          fullMonthly: {
+                            daystransfer: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.daystransfer}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.daystransfer
+                      }
                     />
                   </FormGroup>
                 </Row>
@@ -264,9 +384,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           mtc: e.target.value,
+                          fullMonthly: {
+                            mtc: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.mtc}
+                      value={fullMonthly === null ? 0 : fullMonthly.mtc}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -275,9 +398,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           fac: e.target.value,
+                          fullMonthly: {
+                            fac: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.fac}
+                      value={fullMonthly === null ? 0 : fullMonthly.fac}
                     />
                   </FormGroup>
                 </Row>
@@ -290,9 +416,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           illnessaway: e.target.value,
+                          fullMonthly: {
+                            illnessaway: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.illnessaway}
+                      value={fullMonthly === null ? 0 : fullMonthly.illnessaway}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -303,9 +432,14 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           illnesstransfer: e.target.value,
+                          fullMonthly: {
+                            illnesstransfer: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.illnesstransfer}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.illnesstransfer
+                      }
                     />
                   </FormGroup>
                 </Row>
@@ -319,9 +453,16 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           materialincidenthigh: e.target.value,
+                          fullMonthly: {
+                            materialincidenthigh: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.materialincidenthigh}
+                      value={
+                        fullMonthly === null
+                          ? 0
+                          : fullMonthly.materialincidenthigh
+                      }
                     />
                   </FormGroup>
                   <FormGroup>
@@ -332,9 +473,16 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           materialincidentlow: e.target.value,
+                          fullMonthly: {
+                            materialincidentlow: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.materialincidentlow}
+                      value={
+                        fullMonthly === null
+                          ? 0
+                          : fullMonthly.materialincidentlow
+                      }
                     />
                   </FormGroup>
                 </Row>
@@ -348,9 +496,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           hoursworked: e.target.value,
+                          fullMonthly: {
+                            hoursworked: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.hoursworked}
+                      value={fullMonthly === null ? 0 : fullMonthly.hoursworked}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -361,9 +512,14 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           hourstraining: e.target.value,
+                          fullMonthly: {
+                            hourstraining: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.hourstraining}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.hourstraining
+                      }
                     />
                   </FormGroup>
                   <FormGroup>
@@ -374,9 +530,14 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           hoursbriefing: e.target.value,
+                          fullMonthly: {
+                            hoursbriefing: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.hoursbriefing}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.hoursbriefing
+                      }
                     />
                   </FormGroup>
                 </Row>
@@ -390,9 +551,14 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           incidenthigh: e.target.value,
+                          fullMonthly: {
+                            incidenthigh: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.incidenthigh}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.incidenthigh
+                      }
                     />
                   </FormGroup>
                   <FormGroup>
@@ -403,9 +569,12 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           incidentlow: e.target.value,
+                          fullMonthly: {
+                            incidentlow: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.incidentlow}
+                      value={fullMonthly === null ? 0 : fullMonthly.incidentlow}
                     />
                   </FormGroup>
                 </Row>
@@ -418,9 +587,14 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           incidentpath: e.target.value,
+                          fullMonthly: {
+                            incidentpath: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.incidentpath}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.incidentpath
+                      }
                     />
                   </FormGroup>
                   <FormGroup>
@@ -431,9 +605,16 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           incidentenvironment: e.target.value,
+                          fullMonthly: {
+                            incidentenvironment: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.incidentenvironment}
+                      value={
+                        fullMonthly === null
+                          ? 0
+                          : fullMonthly.incidentenvironment
+                      }
                     />
                   </FormGroup>
                 </Row>
@@ -451,7 +632,9 @@ export default class Report extends Component {
                           },
                         })
                       }
-                      value={fullMonthly.lastincident}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.lastincident
+                      }
                     />
                   </FormGroup>
                   <FormGroup>
@@ -462,9 +645,14 @@ export default class Report extends Component {
                       onChange={e =>
                         this.setState({
                           effectiveness: e.target.value,
+                          fullMonthly: {
+                            effectiveness: e.target.value,
+                          },
                         })
                       }
-                      value={fullMonthly.effectiveness}
+                      value={
+                        fullMonthly === null ? 0 : fullMonthly.effectiveness
+                      }
                     />
                   </FormGroup>
                 </Row>
