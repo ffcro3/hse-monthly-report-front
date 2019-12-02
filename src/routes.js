@@ -8,6 +8,7 @@ import PreventiveIndex from './pages/PreventiveIndex';
 import ASO from './pages/ASO';
 import Away from './pages/Away';
 import Ergo from './pages/Ergo';
+import Archive from './pages/Archive';
 
 export default function Routes() {
   return (
@@ -33,6 +34,11 @@ export default function Routes() {
         <Route path="/report-mensal/aso/:report" exact component={ASO} />
         <Route path="/report-mensal/away/:report" exact component={Away} />
         <Route path="/report-mensal/ergo/:report" exact component={Ergo} />
+        <Route
+          path="/report-mensal/archive/:report"
+          exact
+          component={Archive}
+        />
       </Switch>
     </BrowserRouter>
   );
