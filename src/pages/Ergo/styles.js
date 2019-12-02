@@ -19,7 +19,7 @@ export const PageSubTitle = styled.text`
 export const IPContainer = styled.div`
   display: flex;
   flex-direction: row;
-  background: #c3c3c3;
+  background: ${props => (props.primary ? '#2b9720' : '#c41d3c')};
   width: 100%;
   padding: 20px;
   border-radius: 4px;
@@ -27,7 +27,7 @@ export const IPContainer = styled.div`
 
   .h2 {
     font-size: 24px;
-    color: #333;
+    color: ${props => (props.primary ? '#333' : '#fff')};
   }
 `;
 

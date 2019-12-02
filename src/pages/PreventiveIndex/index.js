@@ -384,7 +384,7 @@ export default class Report extends Component {
         finalresult: this.state.finalresult + 0.05,
       });
     } else {
-      const calc = (inpectionsexpect / inpectionsdone) * 0.025;
+      const calc = (inpectionsdone / inpectionsexpect) * 0.025;
 
       this.setState({
         finalresult: this.state.finalresult + calc,
@@ -400,7 +400,7 @@ export default class Report extends Component {
         finalresult: this.state.finalresult + 0.05,
       });
     } else {
-      const calc = (briefingexpect / briefingdone) * 0.025;
+      const calc = (briefingdone / briefingexpect) * 0.025;
 
       this.setState({
         finalresult: this.state.finalresult + calc,
@@ -416,7 +416,7 @@ export default class Report extends Component {
         finalresult: this.state.finalresult + 0.1,
       });
     } else {
-      const calc = (actionplanexpect / actionplandone) * 0.05;
+      const calc = (actionplandone / actionplanexpect) * 0.05;
 
       this.setState({
         finalresult: this.state.finalresult + calc,
@@ -432,7 +432,7 @@ export default class Report extends Component {
         finalresult: this.state.finalresult + 0.05,
       });
     } else {
-      const calc = (this.state.pasexpect / this.state.pasdone) * 0.025;
+      const calc = (this.state.pasdone / this.state.pasexpect) * 0.025;
 
       this.setState({
         finalresult: this.state.finalresult + calc,
@@ -448,7 +448,7 @@ export default class Report extends Component {
         finalresult: this.state.finalresult + 0.05,
       });
     } else {
-      const calc = (trainingexpect / trainindone) * 0.025;
+      const calc = (trainindone / trainingexpect) * 0.025;
 
       this.setState({
         finalresult: this.state.finalresult + calc,
@@ -1497,18 +1497,32 @@ export default class Report extends Component {
                   </FormGroup>
                 </Row>
 
-                <IPContainer>
-                  <h2>
-                    Resultado Final: {` `}
-                    {fullPreventive === null
-                      ? 0
-                      : 1 -
-                        parseFloat(
-                          this.state.fullPreventive.finalresult
-                        ).toFixed(2)}{' '}
-                    %
-                  </h2>
-                </IPContainer>
+                {this.state.finalresult > 0.8 ? (
+                  <IPContainer primary>
+                    <h2>
+                      Resultado Final: {` `}
+                      {fullPreventive === null
+                        ? 0
+                        : parseFloat(this.state.finalresult * 100).toFixed(
+                            1
+                          )}{' '}
+                      %
+                    </h2>
+                  </IPContainer>
+                ) : (
+                  <IPContainer>
+                    <h2>
+                      Resultado Final: {` `}
+                      {fullPreventive === null
+                        ? 0
+                        : parseFloat(this.state.finalresult * 100).toFixed(
+                            1
+                          )}{' '}
+                      %
+                    </h2>
+                  </IPContainer>
+                )}
+
                 <FooterContainer>
                   {page <= 1 ? (
                     ''
