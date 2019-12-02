@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Report from './pages/Report';
 import ReportMensal from './pages/ReportMensal';
 import Environment from './pages/Environment';
+import PreventiveIndex from './pages/PreventiveIndex';
 
 export default function Routes() {
   return (
@@ -24,7 +25,7 @@ export default function Routes() {
         <Route
           path="/report-mensal/preventive-index/:report"
           exact
-          component={Environment}
+          component={PreventiveIndex}
         />
       </Switch>
     </BrowserRouter>
