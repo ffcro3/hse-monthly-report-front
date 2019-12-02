@@ -256,6 +256,8 @@ export default class Report extends Component {
     });
 
     console.log(this.state.fullEnvironment);
+
+    await this.calculatePreventinveIndex();
   }
 
   async fixDateError() {
@@ -605,7 +607,7 @@ export default class Report extends Component {
   }
 
   async handleForm() {
-    const insertEnvironment = await api.post('/environment', {
+    const insertPreventive = await api.post('/preventiveindex', {
       reportid: this.state.actualReport,
       pyramidexpect: this.state.pyramidexpect,
       pyramiddone: this.state.pyramiddone,
@@ -644,7 +646,7 @@ export default class Report extends Component {
       finalresult: this.state.finalresult,
     });
 
-    const loginpath = `/report-mensal/preventive-index/${this.state.actualReport}`;
+    const loginpath = `/report-mensal/aso/${this.state.actualReport}`;
     this.props.history.push(loginpath);
   }
 
@@ -1479,7 +1481,9 @@ export default class Report extends Component {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <LabelInput htmlFor="ltifrdone">Realizado</LabelInput>
+                    <LabelInput htmlFor="ltifrdone" step="0.01">
+                      Realizado
+                    </LabelInput>
                     <InputNumber
                       onChange={async e => {
                         this.setState({
