@@ -134,8 +134,6 @@ export default class Report extends Component {
     }
   }
 
-  handleLogin() {}
-
   async fixFieldError() {
     await this.setState({
       error: null,

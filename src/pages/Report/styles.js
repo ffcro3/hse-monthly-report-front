@@ -15,6 +15,13 @@ export const PageSubTitle = styled.p`
   margin-top: 10px;
 `;
 
+export const StrongSubTitle = styled.p`
+  @import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+`;
+
 export const Error = styled.div`
   display: flex;
   flex-direction: column;
