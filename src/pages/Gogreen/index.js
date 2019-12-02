@@ -167,7 +167,7 @@ export default class Report extends Component {
               </HeaderTitle>
               <Divider />
               <Form>
-                <ReportTitle>Arquivamentos</ReportTitle>
+                <ReportTitle>Afastamentos</ReportTitle>
                 <Row>
                   <FormGroup>
                     <LabelInput htmlFor="had">
