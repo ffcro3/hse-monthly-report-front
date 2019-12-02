@@ -40,7 +40,7 @@ export default class Report extends Component {
     actualReport: null,
     reportData: [],
     fullArchive: [],
-    page: 5,
+    page: 7,
     had: '',
     number: '',
   };
@@ -132,7 +132,7 @@ export default class Report extends Component {
         </>
       );
     }
-    if (page === 5) {
+    if (page === 7) {
       return (
         <>
           <Page>

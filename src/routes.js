@@ -9,6 +9,7 @@ import ASO from './pages/ASO';
 import Away from './pages/Away';
 import Ergo from './pages/Ergo';
 import Archive from './pages/Archive';
+import Gogreen from './pages/Gogreen';
 
 export default function Routes() {
   return (
@@ -38,6 +39,11 @@ export default function Routes() {
           path="/report-mensal/archive/:report"
           exact
           component={Archive}
+        />
+        <Route
+          path="/report-mensal/gogreen/:report"
+          exact
+          component={Gogreen}
         />
       </Switch>
     </BrowserRouter>

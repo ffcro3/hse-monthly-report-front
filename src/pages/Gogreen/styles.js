@@ -7,6 +7,19 @@ export const PageTitle = styled.h1`
   margin-left: 30px;
 `;
 
+export const TextArea = styled.textarea`
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 100px;
+  width: 950px;
+  border: 1px solid #ccc;
+  color: #333;
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+`;
+
 export const PageSubTitle = styled.text`
   @import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
   font-family: 'Lato', sans-serif;

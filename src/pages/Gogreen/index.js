@@ -29,6 +29,7 @@ import {
   IPContainer,
   ItemContainer,
   IPTitle,
+  TextArea,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -39,10 +40,14 @@ export default class Report extends Component {
     reportmensal: null,
     actualReport: null,
     reportData: [],
-    fullArchive: [],
-    page: 5,
-    had: '',
-    number: '',
+    fullGreen: [],
+    page: 8,
+    target: String,
+    number: String,
+    started: String,
+    descriptionstart: String,
+    action: String,
+    descriptionaction: String,
   };
 
   async componentDidMount() {
@@ -58,7 +63,7 @@ export default class Report extends Component {
     this.setState({
       reportmensal: actualReport,
       reportData: JSON.parse(JSON.stringify(response.data[0])),
-      fullArchive: JSON.parse(JSON.stringify(response.data[7])),
+      fullGreen: JSON.parse(JSON.stringify(response.data[10])),
     });
 
     console.log(response);
@@ -70,12 +75,22 @@ export default class Report extends Component {
     };
 
     await this.setState({
-      had: this.state.fullArchive === null ? '' : this.state.fullArchive.had,
-      number:
-        this.state.fullArchive === null ? '' : this.state.fullArchive.number,
+      target: this.state.fullGreen === null ? '' : this.state.fullGreen.target,
+      number: this.state.fullGreen === null ? '' : this.state.fullGreen.number,
+      started:
+        this.state.fullGreen === null ? '' : this.state.fullGreen.started,
+      descriptionstart:
+        this.state.fullGreen === null
+          ? ''
+          : this.state.fullGreen.descriptionstart,
+      action: this.state.fullGreen === null ? '' : this.state.fullGreen.action,
+      descriptionaction:
+        this.state.fullGreen === null
+          ? ''
+          : this.state.fullGreen.descriptionaction,
     });
 
-    console.log(this.state.fullArchive);
+    console.log(this.state.fullGreen);
   }
 
   async fixDateError() {
@@ -91,10 +106,14 @@ export default class Report extends Component {
   }
 
   async handleForm() {
-    const insertArchive = await api.post('/archive', {
+    const insertArchive = await api.post('/gogreen', {
       reportid: this.state.actualReport,
-      had: this.state.had,
+      target: this.state.target,
       number: this.state.number,
+      started: this.state.started,
+      descriptionstart: this.state.descriptionstart,
+      action: this.state.action,
+      descriptionaction: this.state.descriptionstart,
     });
 
     const loginpath = `/report-mensal/restrictions/${this.state.actualReport}`;
@@ -107,7 +126,7 @@ export default class Report extends Component {
   }
 
   render() {
-    const { error, reportData, fullArchive, page, had } = this.state;
+    const { error, reportData, fullGreen, page, had } = this.state;
     const date = 'Dezembro 2019';
     if (error === 'Você deixou campos em branco.') {
       return (
@@ -132,7 +151,7 @@ export default class Report extends Component {
         </>
       );
     }
-    if (page === 5) {
+    if (page === 8) {
       return (
         <>
           <Page>
@@ -167,22 +186,57 @@ export default class Report extends Component {
               </HeaderTitle>
               <Divider />
               <Form>
-                <ReportTitle>Afastamentos</ReportTitle>
+                <ReportTitle>GoGreen</ReportTitle>
                 <Row>
                   <FormGroup>
-                    <LabelInput htmlFor="had">
-                      Houve desligamentos de colaboradores no mês reportado?
+                    <LabelInput htmlFor="target">
+                      Meta de plantio de árvores do site (HC * 2)
+                    </LabelInput>
+                    <InputNumber
+                      onChange={e =>
+                        this.setState({
+                          target: e.target.value,
+                          fullGreen: {
+                            target: e.target.value,
+                          },
+                        })
+                      }
+                      value={fullGreen === null ? 0 : fullGreen.target}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <LabelInput htmlFor="number">
+                      Quantidade total reportada para Deutsche Post
+                    </LabelInput>
+                    <InputNumber
+                      onChange={e =>
+                        this.setState({
+                          number: e.target.value,
+                          fullGreen: {
+                            number: e.target.value,
+                          },
+                        })
+                      }
+                      value={fullGreen === null ? 0 : fullGreen.number}
+                    />
+                  </FormGroup>
+                </Row>
+
+                <Row>
+                  <FormGroup>
+                    <LabelInput htmlFor="started">
+                      O site iniciou as tratativas de plantio de árvores?
                     </LabelInput>
                     <SelectInput
                       onChange={e =>
                         this.setState({
-                          had: e.target.value,
-                          fullArchive: {
-                            had: e.target.had,
+                          started: e.target.value,
+                          fullGreen: {
+                            started: e.target.started,
                           },
                         })
                       }
-                      value={fullArchive === null ? 0 : fullArchive.had}
+                      value={fullGreen === null ? 0 : fullGreen.started}
                     >
                       <Option value="Selecione" selected readonly>
                         Selecione
@@ -191,28 +245,72 @@ export default class Report extends Component {
                       <Option value="Não">Não</Option>
                     </SelectInput>
                   </FormGroup>
-                  {had === 'Sim' ? (
-                    <FormGroup>
-                      <LabelInput htmlFor="number">
-                        Número de colaboradores desligados
-                      </LabelInput>
-                      <InputNumber
-                        onChange={e =>
-                          this.setState({
-                            number: e.target.value,
-                            fullArchive: {
-                              number: e.target.value,
-                            },
-                          })
-                        }
-                        value={fullArchive === null ? 0 : fullArchive.number}
-                      />
-                    </FormGroup>
-                  ) : (
-                    ''
-                  )}
+                </Row>
+                <Row style={{ marginTop: '-20px' }}>
+                  <FormGroup>
+                    <LabelInput htmlFor="descriptionstart">Descreva</LabelInput>
+                    <TextArea
+                      width="80%"
+                      onChange={e =>
+                        this.setState({
+                          descriptionstart: e.target.value,
+                          fullGreen: {
+                            descriptionstart: e.target.descriptionstart,
+                          },
+                        })
+                      }
+                      value={
+                        fullGreen === null ? 0 : fullGreen.descriptionstart
+                      }
+                    ></TextArea>
+                  </FormGroup>
                 </Row>
 
+                <Row>
+                  <FormGroup>
+                    <LabelInput htmlFor="action">
+                      Houve alguma acão de GoGreen no Site?
+                    </LabelInput>
+                    <SelectInput
+                      onChange={e =>
+                        this.setState({
+                          action: e.target.value,
+                          fullGreen: {
+                            action: e.target.action,
+                          },
+                        })
+                      }
+                      value={fullGreen === null ? 0 : fullGreen.action}
+                    >
+                      <Option value="Selecione" selected readonly>
+                        Selecione
+                      </Option>
+                      <Option value="Sim">Sim</Option>
+                      <Option value="Não">Não</Option>
+                    </SelectInput>
+                  </FormGroup>
+                </Row>
+                <Row style={{ marginTop: '-20px' }}>
+                  <FormGroup>
+                    <LabelInput htmlFor="descriptionaction">
+                      Descreva
+                    </LabelInput>
+                    <TextArea
+                      width="80%"
+                      onChange={e =>
+                        this.setState({
+                          descriptionaction: e.target.value,
+                          fullGreen: {
+                            descriptionaction: e.target.descriptionaction,
+                          },
+                        })
+                      }
+                      value={
+                        fullGreen === null ? 0 : fullGreen.descriptionaction
+                      }
+                    ></TextArea>
+                  </FormGroup>
+                </Row>
                 <FooterContainer>
                   {page <= 1 ? (
                     ''
