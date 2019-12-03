@@ -30,6 +30,8 @@ import {
   ItemContainer,
   IPTitle,
   ErrorContainer,
+  ErrorFooter,
+  Justify,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -44,6 +46,8 @@ export default class Report extends Component {
     page: 5,
     had: '',
     number: '',
+    justifyExceed: '',
+    awayNumberJustify: '',
   };
 
   async componentDidMount() {
@@ -116,6 +120,27 @@ export default class Report extends Component {
     });
   }
 
+  async Justify() {
+    const sendMail = await api.post('/justify/cat', {
+      user: this.state.reportData.responsible,
+      site: this.state.reportData.siteName,
+      responsible: this.state.reportData.responsible,
+      cat: this.state.catNumberJustify,
+      justify: this.state.justifyExceed,
+    });
+
+    console.log(sendMail);
+
+    await this.setState({
+      error: '',
+      number: 0,
+      had: 'Excedido',
+      fullCAT: {
+        number: this.state.catNumberJustify,
+      },
+    });
+  }
+
   render() {
     const { error, reportData, fullAway, page, had, number } = this.state;
     const date = 'Dezembro 2019';
@@ -150,7 +175,21 @@ export default class Report extends Component {
             <ErrorContainer>
               <ErrorTitle>Existem mais de 7 Afastamentos. </ErrorTitle>
               <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
-              <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+              <Justify
+                onChange={e =>
+                  this.setState({
+                    justifyExceed: e.target.value,
+                  })
+                }
+              ></Justify>
+              <ErrorFooter>
+                <BackButton onClick={() => this.fixError()}>
+                  Cancelar
+                </BackButton>
+                <FowardButton onClick={() => this.Justify()}>
+                  Justificar
+                </FowardButton>
+              </ErrorFooter>
             </ErrorContainer>
           </Error>
         </>
@@ -206,13 +245,14 @@ export default class Report extends Component {
                           },
                         })
                       }
-                      value={fullAway === null ? 0 : fullAway.had}
+                      value={this.state.had}
                     >
                       <Option value="Selecione" selected readonly>
                         Selecione
                       </Option>
                       <Option value="Sim">Sim</Option>
                       <Option value="Não">Não</Option>
+                      <Option value="Excedido">Excedido</Option>
                     </SelectInput>
                   </FormGroup>
                   {had === 'Sim' ? (
@@ -224,12 +264,13 @@ export default class Report extends Component {
                         onChange={e =>
                           this.setState({
                             number: e.target.value,
+                            awayNumberJustify: e.target.value,
                             fullAway: {
                               number: e.target.value,
                             },
                           })
                         }
-                        value={fullAway === null ? 0 : fullAway.number}
+                        value={this.state.number}
                       />
                     </FormGroup>
                   ) : (

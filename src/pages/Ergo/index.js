@@ -401,6 +401,7 @@ export default class Report extends Component {
                         onChange={e => {
                           this.setState({
                             notimplemented: e.target.value,
+                            ergoNumberJustify: e.target.value,
                             fullErgo: {
                               notimplemented: e.target.notimplemented,
                             },
