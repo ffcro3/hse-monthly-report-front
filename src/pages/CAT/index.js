@@ -30,6 +30,8 @@ import {
   ItemContainer,
   IPTitle,
   ErrorContainer,
+  ErrorFooter,
+  Justify,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -58,7 +60,7 @@ export default class Report extends Component {
     dateemission1: '',
     type1: '',
     catnumber1: '',
-    emission2: '',
+    type3emission2: '',
     justify2: '',
     date2: '',
     dateemission2: '',
@@ -94,6 +96,8 @@ export default class Report extends Component {
     dateemission7: '',
     type7: '',
     catnumber7: '',
+    justifyExceed: '',
+    catNumberJustify: '',
   };
 
   async componentDidMount() {
@@ -112,7 +116,7 @@ export default class Report extends Component {
       fullCAT: JSON.parse(JSON.stringify(response.data[9])),
     });
 
-    console.log(response);
+    console.log(this.state.reportData);
 
     window.beforeunload = e => {
       console.log('Stop this');
@@ -130,7 +134,7 @@ export default class Report extends Component {
       dateemission1:
         this.state.fullCAT === null ? '' : this.state.fullCAT.dateemission1,
       type1: this.state.fullCAT === null ? '' : this.state.fullCAT.type1,
-      cattype11:
+      catnumber1:
         this.state.fullCAT === null ? '' : this.state.fullCAT.catnumber1,
       emission2:
         this.state.fullCAT === null ? '' : this.state.fullCAT.emission2,
@@ -213,8 +217,29 @@ export default class Report extends Component {
     });
   }
 
+  async Justify() {
+    const sendMail = await api.post('/justify/cat', {
+      user: this.state.reportData.responsible,
+      site: this.state.reportData.siteName,
+      responsible: this.state.reportData.responsible,
+      cat: this.state.catNumberJustify,
+      justify: this.state.justifyExceed,
+    });
+
+    console.log(sendMail);
+
+    await this.setState({
+      error: '',
+      number: 0,
+      had: 'Excedido',
+      fullCAT: {
+        number: this.state.catNumberJustify,
+      },
+    });
+  }
+
   async handleForm() {
-    const insertASO = await api.post('/aso', {
+    const insertCAT = await api.post('/cat', {
       reportid: this.state.actualReport,
       had: this.state.had,
       number: this.state.number,
@@ -267,7 +292,7 @@ export default class Report extends Component {
   }
 
   handleGoback() {
-    const loginpath = `/report-mensal/restriction/${this.state.actualReport}`;
+    const loginpath = `/report-mensal/restrictions/${this.state.actualReport}`;
     this.props.history.push(loginpath);
   }
 
@@ -281,6 +306,9 @@ export default class Report extends Component {
             <ErrorTitle>Existem campos em branco. </ErrorTitle>
             <ErrorSubTitle>Por favor, corrija.</ErrorSubTitle>
             <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+            <FowardButton onClick={() => this.fixError()}>
+              Cancelar
+            </FowardButton>
           </Error>
         </>
       );
@@ -293,6 +321,7 @@ export default class Report extends Component {
             <ErrorTitle>Dados inseridos com sucesso. </ErrorTitle>
             <ErrorSubTitle>Verifique o banco.</ErrorSubTitle>
             <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+            <BackButton onClick={() => this.fixError()}>Cancelar</BackButton>
           </Error>
         </>
       );
@@ -305,7 +334,21 @@ export default class Report extends Component {
             <ErrorContainer>
               <ErrorTitle>Existem mais de 7 CAT abertas. </ErrorTitle>
               <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
-              <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+              <Justify
+                onChange={e =>
+                  this.setState({
+                    justifyExceed: e.target.value,
+                  })
+                }
+              ></Justify>
+              <ErrorFooter>
+                <BackButton onClick={() => this.fixError()}>
+                  Cancelar
+                </BackButton>
+                <FowardButton onClick={() => this.Justify()}>
+                  Justificar
+                </FowardButton>
+              </ErrorFooter>
             </ErrorContainer>
           </Error>
         </>
@@ -361,13 +404,14 @@ export default class Report extends Component {
                           },
                         })
                       }
-                      value={fullCAT === null ? 0 : fullCAT.had}
+                      value={this.state.had}
                     >
                       <Option value="Selecione" selected readonly>
                         Selecione
                       </Option>
                       <Option value="Sim">Sim</Option>
                       <Option value="Não">Não</Option>
+                      <Option value="Excedido">Excedido</Option>
                     </SelectInput>
                   </FormGroup>
                   {had === 'Sim' ? (
@@ -379,12 +423,13 @@ export default class Report extends Component {
                         onChange={e =>
                           this.setState({
                             number: e.target.value,
+                            catNumberJustify: e.target.value,
                             fullCAT: {
                               number: e.target.value,
                             },
                           })
                         }
-                        value={fullCAT === null ? 0 : fullCAT.number}
+                        value={this.state.number}
                       />
                     </FormGroup>
                   ) : (
@@ -409,8 +454,11 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.emission1}
+                          value={this.state.emission1}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Sim">Sim</Option>
                           <Option value="Não">Não</Option>
                         </SelectInputFourth>
@@ -426,7 +474,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.justify1}
+                          value={this.state.justify1}
                           style={{ width: '720px' }}
                         />
                       </FormGroup>
@@ -443,7 +491,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.date1}
+                          value={this.state.date1}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -458,7 +506,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission1}
+                          value={this.state.dateemission1}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -467,15 +515,18 @@ export default class Report extends Component {
                         <SelectInput
                           onChange={e =>
                             this.setState({
-                              dateemission1: e.target.value,
+                              type1: e.target.value,
                               fullCAT: {
-                                dateemission1: e.target.value,
+                                type1: e.target.value,
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission1}
+                          value={this.state.type1}
                           style={{ width: '200px' }}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Acidente de Trajeto">
                             Acidente de Trajeto
                           </Option>
@@ -498,7 +549,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.catnumber1}
+                          value={this.state.catnumber1}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -524,8 +575,11 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.emission2}
+                          value={this.state.emission2}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Sim">Sim</Option>
                           <Option value="Não">Não</Option>
                         </SelectInputFourth>
@@ -541,7 +595,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.justify2}
+                          value={this.state.justify2}
                           style={{ width: '720px' }}
                         />
                       </FormGroup>
@@ -558,7 +612,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.date2}
+                          value={this.state.date2}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -573,7 +627,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission2}
+                          value={this.state.emission2}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -588,9 +642,12 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission2}
+                          value={this.state.dateemission2}
                           style={{ width: '200px' }}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Acidente de Trajeto">
                             Acidente de Trajeto
                           </Option>
@@ -613,7 +670,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.catnumber2}
+                          value={this.state.catnumber2}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -639,8 +696,11 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.emission3}
+                          value={this.state.emission3}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Sim">Sim</Option>
                           <Option value="Não">Não</Option>
                         </SelectInputFourth>
@@ -656,7 +716,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.justify3}
+                          value={this.state.justify3}
                           style={{ width: '720px' }}
                         />
                       </FormGroup>
@@ -673,7 +733,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.date3}
+                          value={this.state.date3}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -688,7 +748,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission3}
+                          value={this.state.dateemission3}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -703,9 +763,12 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.type3}
+                          value={this.state.type3}
                           style={{ width: '200px' }}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Acidente de Trajeto">
                             Acidente de Trajeto
                           </Option>
@@ -728,7 +791,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.catnumber3}
+                          value={this.state.catnumber3}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -754,8 +817,11 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.emission4}
+                          value={this.state.emission4}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Sim">Sim</Option>
                           <Option value="Não">Não</Option>
                         </SelectInputFourth>
@@ -771,7 +837,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.justify4}
+                          value={this.state.justify4}
                           style={{ width: '720px' }}
                         />
                       </FormGroup>
@@ -788,7 +854,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.date4}
+                          value={this.state.date4}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -803,7 +869,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission4}
+                          value={this.state.dateemission4}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -818,9 +884,12 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.type4}
+                          value={this.state.type4}
                           style={{ width: '200px' }}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Acidente de Trajeto">
                             Acidente de Trajeto
                           </Option>
@@ -843,7 +912,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.catnumber4}
+                          value={this.state.catnumber4}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -869,8 +938,11 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.emission5}
+                          value={this.state.emission5}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Sim">Sim</Option>
                           <Option value="Não">Não</Option>
                         </SelectInputFourth>
@@ -886,7 +958,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.justify5}
+                          value={this.state.justify5}
                           style={{ width: '720px' }}
                         />
                       </FormGroup>
@@ -903,7 +975,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.date5}
+                          value={this.state.date5}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -918,7 +990,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission5}
+                          value={this.state.dateemission5}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -933,9 +1005,12 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.type5}
+                          value={this.state.type5}
                           style={{ width: '200px' }}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Acidente de Trajeto">
                             Acidente de Trajeto
                           </Option>
@@ -958,7 +1033,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.catnumber5}
+                          value={this.state.catnumber5}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -984,8 +1059,11 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.emission6}
+                          value={this.state.emission6}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Sim">Sim</Option>
                           <Option value="Não">Não</Option>
                         </SelectInputFourth>
@@ -1001,7 +1079,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.justify6}
+                          value={this.state.justify6}
                           style={{ width: '720px' }}
                         />
                       </FormGroup>
@@ -1018,7 +1096,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.date6}
+                          value={this.state.date6}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -1033,7 +1111,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission6}
+                          value={this.state.dateemission6}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -1048,9 +1126,12 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.type6}
+                          value={this.state.type6}
                           style={{ width: '200px' }}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Acidente de Trajeto">
                             Acidente de Trajeto
                           </Option>
@@ -1073,7 +1154,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.catnumber6}
+                          value={this.state.catnumber6}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -1099,8 +1180,11 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.emission7}
+                          value={this.state.emission7}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Sim">Sim</Option>
                           <Option value="Não">Não</Option>
                         </SelectInputFourth>
@@ -1116,7 +1200,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.justify7}
+                          value={this.state.justify7}
                           style={{ width: '720px' }}
                         />
                       </FormGroup>
@@ -1133,7 +1217,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.date7}
+                          value={this.state.date7}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -1148,7 +1232,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.dateemission7}
+                          value={this.state.dateemission7}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>
@@ -1163,9 +1247,12 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.type7}
+                          value={this.state.type7}
                           style={{ width: '200px' }}
                         >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
                           <Option value="Acidente de Trajeto">
                             Acidente de Trajeto
                           </Option>
@@ -1188,7 +1275,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullCAT === null ? 0 : fullCAT.catnumber7}
+                          value={this.state.catnumber7}
                           style={{ width: '200px' }}
                         />
                       </FormGroup>

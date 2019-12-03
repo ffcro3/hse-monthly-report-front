@@ -217,7 +217,7 @@ export default class Report extends Component {
                             },
                           })
                         }
-                        value={fullASO === null ? 0 : fullASO.number}
+                        value={this.state.number}
                       />
                     </FormGroup>
                   ) : (

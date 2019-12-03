@@ -426,7 +426,7 @@ export default class Report extends Component {
   }
 
   async handleForm() {
-    const insertASO = await api.post('/aso', {
+    const insertASO = await api.post('/restriction', {
       reportid: this.state.actualReport,
       had: this.state.had,
       number: this.state.number,
@@ -1026,995 +1026,1000 @@ export default class Report extends Component {
                   ''
                 )}{' '}
                 {had === 'Sim' && Number(number) >= 3 ? (
-
                   <>
-                  <ItemContainer>
-                    <IPTitle>Restrição 3</IPTitle>
-                  </ItemContainer>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Tipo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            type3: e.target.value,
-                            fullRestrictions: {
+                    <ItemContainer>
+                      <IPTitle>Restrição 3</IPTitle>
+                    </ItemContainer>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Tipo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               type3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.type3
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Acidente com lesão">
-                          Acidente com lesão
-                        </Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Motivo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            reason3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                type3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.type3
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Acidente com lesão">
+                            Acidente com lesão
+                          </Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Motivo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               reason3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.reason3
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Ocupacional">Ocupacional</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Início da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            start3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                reason3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.reason3
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Ocupacional">Ocupacional</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Início da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               start3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.start3
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Fim da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            end3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                start3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.start3
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Fim da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               end3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.end3
-                        }
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row style={{ marginTop: '-35px' }}>
-                    <FormGroup>
-                      <LabelInput>Prazo em dias</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            days3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                end3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.end3
+                          }
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row style={{ marginTop: '-35px' }}>
+                      <FormGroup>
+                        <LabelInput>Prazo em dias</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               days3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.days3
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Matricula</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            register3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                days3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.days3
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Matricula</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               register3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.register3
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Nome</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            name3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                register3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.register3
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Nome</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               name3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.name3
-                        }
-                        style={{ width: '450px' }}
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Preenchimento do Formulário</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            form3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                name3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.name3
+                          }
+                          style={{ width: '450px' }}
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Preenchimento do Formulário</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               form3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.form3
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Finalizado">Finalizado</Option>
-                        <Option value="Em Andamento">Em Andamento</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Ativadade Proposta</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            description3: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                form3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.form3
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Finalizado">Finalizado</Option>
+                          <Option value="Em Andamento">Em Andamento</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Ativadade Proposta</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               description3: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.description3
-                        }
-                        style={{ width: '650px' }}
-                      />
-                    </FormGroup>
-                  </Row>
+                              fullRestrictions: {
+                                description3: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.description3
+                          }
+                          style={{ width: '650px' }}
+                        />
+                      </FormGroup>
+                    </Row>
                   </>
-                ) : ''}{' '}
+                ) : (
+                  ''
+                )}{' '}
                 {had === 'Sim' && Number(number) >= 4 ? (
-
                   <>
-                  <ItemContainer>
-                    <IPTitle>Restrição 4</IPTitle>
-                  </ItemContainer>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Tipo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            type4: e.target.value,
-                            fullRestrictions: {
+                    <ItemContainer>
+                      <IPTitle>Restrição 4</IPTitle>
+                    </ItemContainer>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Tipo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               type4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.type4
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Acidente com lesão">
-                          Acidente com lesão
-                        </Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Motivo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            reason4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                type4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.type4
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Acidente com lesão">
+                            Acidente com lesão
+                          </Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Motivo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               reason4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.reason4
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Ocupacional">Ocupacional</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Início da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            start4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                reason4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.reason4
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Ocupacional">Ocupacional</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Início da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               start4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.start4
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Fim da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            end4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                start4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.start4
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Fim da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               end4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.end4
-                        }
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row style={{ marginTop: '-45px' }}>
-                    <FormGroup>
-                      <LabelInput>Prazo em dias</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            days4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                end4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.end4
+                          }
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row style={{ marginTop: '-45px' }}>
+                      <FormGroup>
+                        <LabelInput>Prazo em dias</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               days4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.days4
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Matricula</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            register4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                days4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.days4
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Matricula</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               register4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.register4
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Nome</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            name4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                register4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.register4
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Nome</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               name4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.name4
-                        }
-                        style={{ width: '450px' }}
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Preenchimento do Formulário</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            form4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                name4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.name4
+                          }
+                          style={{ width: '450px' }}
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Preenchimento do Formulário</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               form4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.form4
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Finalizado">Finalizado</Option>
-                        <Option value="Em Andamento">Em Andamento</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Ativadade Proposta</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            description4: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                form4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.form4
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Finalizado">Finalizado</Option>
+                          <Option value="Em Andamento">Em Andamento</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Ativadade Proposta</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               description4: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.description4
-                        }
-                        style={{ width: '650px' }}
-                      />
-                    </FormGroup>
-                  </Row>
+                              fullRestrictions: {
+                                description4: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.description4
+                          }
+                          style={{ width: '650px' }}
+                        />
+                      </FormGroup>
+                    </Row>
                   </>
-                ) : ''}{' '}
+                ) : (
+                  ''
+                )}{' '}
                 {had === 'Sim' && Number(number) >= 5 ? (
-
                   <>
-                  <ItemContainer>
-                    <IPTitle>Restrição 5</IPTitle>
-                  </ItemContainer>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Tipo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            type5: e.target.value,
-                            fullRestrictions: {
+                    <ItemContainer>
+                      <IPTitle>Restrição 5</IPTitle>
+                    </ItemContainer>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Tipo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               type5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.type5
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Acidente com lesão">
-                          Acidente com lesão
-                        </Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Motivo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            reason5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                type5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.type5
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Acidente com lesão">
+                            Acidente com lesão
+                          </Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Motivo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               reason5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.reason5
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Ocupacional">Ocupacional</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Início da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            start5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                reason5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.reason5
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Ocupacional">Ocupacional</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Início da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               start5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.start5
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Fim da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            end5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                start5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.start5
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Fim da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               end5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.end5
-                        }
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row style={{ marginTop: '-45px' }}>
-                    <FormGroup>
-                      <LabelInput>Prazo em dias</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            days5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                end5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.end5
+                          }
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row style={{ marginTop: '-45px' }}>
+                      <FormGroup>
+                        <LabelInput>Prazo em dias</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               days5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.days5
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Matricula</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            register5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                days5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.days5
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Matricula</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               register5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.register5
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Nome</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            name5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                register5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.register5
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Nome</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               name5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.name5
-                        }
-                        style={{ width: '550px' }}
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Preenchimento do Formulário</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            form5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                name5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.name5
+                          }
+                          style={{ width: '550px' }}
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Preenchimento do Formulário</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               form5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.form5
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Finalizado">Finalizado</Option>
-                        <Option value="Em Andamento">Em Andamento</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Ativadade Proposta</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            description5: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                form5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.form5
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Finalizado">Finalizado</Option>
+                          <Option value="Em Andamento">Em Andamento</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Ativadade Proposta</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               description5: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.description5
-                        }
-                        style={{ width: '650px' }}
-                      />
-                    </FormGroup>
-                  </Row>
+                              fullRestrictions: {
+                                description5: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.description5
+                          }
+                          style={{ width: '650px' }}
+                        />
+                      </FormGroup>
+                    </Row>
                   </>
-                ) : ''}{' '}
+                ) : (
+                  ''
+                )}{' '}
                 {had === 'Sim' && Number(number) >= 6 ? (
-
                   <>
-                  <ItemContainer>
-                    <IPTitle>Restrição 6</IPTitle>
-                  </ItemContainer>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Tipo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            type6: e.target.value,
-                            fullRestrictions: {
+                    <ItemContainer>
+                      <IPTitle>Restrição 6</IPTitle>
+                    </ItemContainer>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Tipo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               type6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.type6
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Acidente com lesão">
-                          Acidente com lesão
-                        </Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Motivo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            reason6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                type6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.type6
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Acidente com lesão">
+                            Acidente com lesão
+                          </Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Motivo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               reason6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.reason6
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Ocupacional">Ocupacional</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Início da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            start6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                reason6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.reason6
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Ocupacional">Ocupacional</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Início da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               start6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.start6
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Fim da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            end6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                start6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.start6
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Fim da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               end6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.end6
-                        }
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row style={{ marginTop: '-45px' }}>
-                    <FormGroup>
-                      <LabelInput>Prazo em dias</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            days6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                end6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.end6
+                          }
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row style={{ marginTop: '-45px' }}>
+                      <FormGroup>
+                        <LabelInput>Prazo em dias</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               days6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.days6
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Matricula</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            register6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                days6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.days6
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Matricula</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               register6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.register6
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Nome</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            name6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                register6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.register6
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Nome</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               name6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.name6
-                        }
-                        style={{ width: '650px' }}
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Preenchimento do Formulário</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            form6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                name6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.name6
+                          }
+                          style={{ width: '650px' }}
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Preenchimento do Formulário</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               form6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.form6
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Finalizado">Finalizado</Option>
-                        <Option value="Em Andamento">Em Andamento</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Ativadade Proposta</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            description6: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                form6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.form6
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Finalizado">Finalizado</Option>
+                          <Option value="Em Andamento">Em Andamento</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Ativadade Proposta</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               description6: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.description6
-                        }
-                        style={{ width: '650px' }}
-                      />
-                    </FormGroup>
-                  </Row>
+                              fullRestrictions: {
+                                description6: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.description6
+                          }
+                          style={{ width: '650px' }}
+                        />
+                      </FormGroup>
+                    </Row>
                   </>
-                ) : ''}{' '}
-                {had === 'Sim' && Number(number) === 7 ?(
-
+                ) : (
+                  ''
+                )}{' '}
+                {had === 'Sim' && Number(number) === 7 ? (
                   <>
-                  <ItemContainer>
-                    <IPTitle>Restrição 7</IPTitle>
-                  </ItemContainer>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Tipo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            type7: e.target.value,
-                            fullRestrictions: {
+                    <ItemContainer>
+                      <IPTitle>Restrição 7</IPTitle>
+                    </ItemContainer>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Tipo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               type7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.type7
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Acidente com lesão">
-                          Acidente com lesão
-                        </Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Motivo da Restrição</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            reason7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                type7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.type7
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Acidente com lesão">
+                            Acidente com lesão
+                          </Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Motivo da Restrição</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               reason7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.reason7
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Assistencial">Assistencial</Option>
-                        <Option value="Ocupacional">Ocupacional</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Início da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            start7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                reason7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.reason7
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Assistencial">Assistencial</Option>
+                          <Option value="Ocupacional">Ocupacional</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Início da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               start7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.start7
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Fim da Restrição</LabelInput>
-                      <InputDateFourth
-                        onChange={e =>
-                          this.setState({
-                            end7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                start7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.start7
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Fim da Restrição</LabelInput>
+                        <InputDateFourth
+                          onChange={e =>
+                            this.setState({
                               end7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.end7
-                        }
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row style={{ marginTop: '-45px' }}>
-                    <FormGroup>
-                      <LabelInput>Prazo em dias</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            days7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                end7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.end7
+                          }
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row style={{ marginTop: '-45px' }}>
+                      <FormGroup>
+                        <LabelInput>Prazo em dias</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               days7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.days7
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Matricula</LabelInput>
-                      <InputNumberFourth
-                        onChange={e =>
-                          this.setState({
-                            register7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                days7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.days7
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Matricula</LabelInput>
+                        <InputNumberFourth
+                          onChange={e =>
+                            this.setState({
                               register7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.register7
-                        }
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Nome</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            name7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                register7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.register7
+                          }
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Nome</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               name7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.name7
-                        }
-                        style={{ width: '650px' }}
-                      />
-                    </FormGroup>
-                  </Row>
-                  <Row>
-                    <FormGroup>
-                      <LabelInput>Preenchimento do Formulário</LabelInput>
-                      <SelectInputFourth
-                        onChange={e =>
-                          this.setState({
-                            form7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                name7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.name7
+                          }
+                          style={{ width: '650px' }}
+                        />
+                      </FormGroup>
+                    </Row>
+                    <Row>
+                      <FormGroup>
+                        <LabelInput>Preenchimento do Formulário</LabelInput>
+                        <SelectInputFourth
+                          onChange={e =>
+                            this.setState({
                               form7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.form7
-                        }
-                      >
-                        <Option value="Selecione" selected readonly>
-                          Selecione
-                        </Option>
-                        <Option value="Finalizado">Finalizado</Option>
-                        <Option value="Em Andamento">Em Andamento</Option>
-                      </SelectInputFourth>
-                    </FormGroup>
-                    <FormGroup>
-                      <LabelInput>Ativadade Proposta</LabelInput>
-                      <InputTextTriple
-                        onChange={e =>
-                          this.setState({
-                            description7: e.target.value,
-                            fullRestrictions: {
+                              fullRestrictions: {
+                                form7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.form7
+                          }
+                        >
+                          <Option value="Selecione" selected readonly>
+                            Selecione
+                          </Option>
+                          <Option value="Finalizado">Finalizado</Option>
+                          <Option value="Em Andamento">Em Andamento</Option>
+                        </SelectInputFourth>
+                      </FormGroup>
+                      <FormGroup>
+                        <LabelInput>Ativadade Proposta</LabelInput>
+                        <InputTextTriple
+                          onChange={e =>
+                            this.setState({
                               description7: e.target.value,
-                            },
-                          })
-                        }
-                        value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.description7
-                        }
-                        style={{ width: '650px' }}
-                      />
-                    </FormGroup>
-                  </Row>
+                              fullRestrictions: {
+                                description7: e.target.value,
+                              },
+                            })
+                          }
+                          value={
+                            fullRestrictions === null
+                              ? 0
+                              : fullRestrictions.description7
+                          }
+                          style={{ width: '650px' }}
+                        />
+                      </FormGroup>
+                    </Row>
                   </>
-                ) : ''}{' '}
+                ) : (
+                  ''
+                )}{' '}
                 {had === 'Sim' && Number(number) > 7
                   ? this.setState({
                       error:

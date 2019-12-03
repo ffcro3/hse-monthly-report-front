@@ -70,6 +70,22 @@ export const ErrorContainer = styled.div`
   margin: 60px auto;
 `;
 
+export const ErrorFooter = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+`;
+
+export const Justify = styled.textarea`
+  margin-top: 10px;
+  border-radius: 2px;
+  padding: 10px;
+  width: 100%;
+  height: 150px;
+  border: 1px solid #ccc;
+`;
+
 export const ErrorTitle = styled.h1`
   font-size: 26px;
   color: #333;
