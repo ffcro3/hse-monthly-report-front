@@ -332,6 +332,8 @@ export default class Report extends Component {
       });
     }
 
+    console.log();
+
     // RESOLUÇÃO DE PIRÂMIDES
     if (resolutiondone >= resolutionexpect) {
       this.setState({
@@ -603,7 +605,7 @@ export default class Report extends Component {
       });
     }
 
-    console.log(`Resultado: ${1 - this.state.finalresult}`);
+    console.log(`Resultado: ${this.state.finalresult}`);
   }
 
   async handleForm() {

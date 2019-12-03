@@ -83,6 +83,7 @@ export const ErrorSubTitle = styled.h1`
   font-weight: bold;
   margin: 5px;
 `;
+
 export const SelectInput = styled.select`
   margin-top: 10px;
   margin-bottom: 20px;
@@ -146,7 +147,7 @@ export const InputNumberTriple = styled.input.attrs({
 `;
 
 export const InputDate = styled.input.attrs({
-  type: 'date',
+  type: 'date-local',
 })`
   margin-top: 10px;
   height: 40px;
@@ -156,6 +157,56 @@ export const InputDate = styled.input.attrs({
   background: #fff;
   border-radius: 3px;
   padding: 10px;
+`;
+
+export const InputDateFourth = styled.input.attrs({
+  type: 'date',
+})`
+  margin-top: 10px;
+  height: 40px;
+  width: 220px;
+  border: 1px solid #ccc;
+  color: #333;
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+`;
+
+export const InputNumberFourth = styled.input.attrs({
+  type: 'number',
+})`
+  margin-top: 10px;
+  height: 40px;
+  width: 220px;
+  border: 1px solid #ccc;
+  color: #333;
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+`;
+
+export const InputTextFourth = styled.input.attrs({
+  type: 'text',
+})`
+  margin-top: 10px;
+  height: 40px;
+  width: 210px;
+  border: 1px solid #ccc;
+  color: #333;
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+`;
+
+export const SelectInputFourth = styled.select`
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 40px;
+  width: 220px;
+  border: 1px solid #ccc;
+  color: #333;
+  background: #fff;
+  border-radius: 3px;
 `;
 
 export const Option = styled.option`

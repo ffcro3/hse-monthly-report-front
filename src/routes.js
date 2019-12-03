@@ -9,6 +9,8 @@ import ASO from './pages/ASO';
 import Away from './pages/Away';
 import Ergo from './pages/Ergo';
 import Archive from './pages/Archive';
+import Restrictions from './pages/Restrictions';
+import CAT from './pages/CAT';
 import Gogreen from './pages/Gogreen';
 
 export default function Routes() {
@@ -40,6 +42,12 @@ export default function Routes() {
           exact
           component={Archive}
         />
+        <Route
+          path="/report-mensal/restrictions/:report"
+          exact
+          component={Restrictions}
+        />
+        <Route path="/report-mensal/cat/:report" exact component={CAT} />
         <Route
           path="/report-mensal/gogreen/:report"
           exact

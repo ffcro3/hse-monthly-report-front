@@ -29,7 +29,6 @@ import {
   IPContainer,
   ItemContainer,
   IPTitle,
-  ErrorContainer,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -90,16 +89,6 @@ export default class Report extends Component {
     });
   }
 
-  async fixError() {
-    await this.setState({
-      number: 7,
-      error: '',
-      fullASO: {
-        number: 7,
-      },
-    });
-  }
-
   async handleForm() {
     const insertASO = await api.post('/aso', {
       reportid: this.state.actualReport,
@@ -117,17 +106,15 @@ export default class Report extends Component {
   }
 
   render() {
-    const { error, reportData, fullASO, page, had, number } = this.state;
+    const { error, reportData, fullASO, page, had } = this.state;
     const date = 'Dezembro 2019';
-    if (error === 'Existem mais de 7 ASOs vencidos.') {
+    if (error === 'Você deixou campos em branco.') {
       return (
         <>
           <Error>
-            <ErrorContainer>
-              <ErrorTitle>Existem mais de 7 ASOs vencidos. </ErrorTitle>
-              <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
-              <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
-            </ErrorContainer>
+            <ErrorTitle>Existem campos em branco. </ErrorTitle>
+            <ErrorSubTitle>Por favor, corrija.</ErrorSubTitle>
+            <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
           </Error>
         </>
       );
@@ -224,11 +211,7 @@ export default class Report extends Component {
                     ''
                   )}
                 </Row>
-                {number > 7
-                  ? this.setState({
-                      error: 'Existem mais de 7 ASOs vencidos.',
-                    })
-                  : ''}
+
                 <FooterContainer>
                   {page <= 1 ? (
                     ''

@@ -53,21 +53,6 @@ export const Error = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: transparent;
-`;
-
-export const ErrorContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  max-width: 80%;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px 0.5px #888;
-  padding: 30px;
-  margin: 60px auto;
 `;
 
 export const ErrorTitle = styled.h1`
@@ -83,6 +68,7 @@ export const ErrorSubTitle = styled.h1`
   font-weight: bold;
   margin: 5px;
 `;
+
 export const SelectInput = styled.select`
   margin-top: 10px;
   margin-bottom: 20px;

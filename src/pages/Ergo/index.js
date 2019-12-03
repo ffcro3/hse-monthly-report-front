@@ -174,13 +174,6 @@ export default class Report extends Component {
     });
   }
 
-  handleMoreItems() {
-    const { notimplemented } = this.state;
-    if (notimplemented > 7) {
-      this.setState({ error: 'Existem mais de 7 ações não implementadas.' });
-    }
-  }
-
   async handleForm() {
     const insertErgo = await api.post('/ergo17', {
       reportid: this.state.actualReport,
@@ -418,9 +411,6 @@ export default class Report extends Component {
                       </LabelInput>
                       <InputNumberFourth
                         onChange={e => {
-                          if (Number(e.target.value) > 7) {
-                            this.handleMoreItems();
-                          }
                           this.setState({
                             notimplemented: e.target.value,
                             fullErgo: {
@@ -997,7 +987,7 @@ export default class Report extends Component {
                 ) : (
                   ''
                 )}
-                {implemented === 'Não' && Number(notimplemented) >= 7 ? (
+                {implemented === 'Não' && Number(notimplemented) === 7 ? (
                   <>
                     <ItemContainer>
                       <IPTitle>Ação 7</IPTitle>
@@ -1090,6 +1080,12 @@ export default class Report extends Component {
                 ) : (
                   ''
                 )}
+
+                {implemented === 'Não' && Number(notimplemented) > 7
+                  ? this.setState({
+                      error: 'Existem mais de 7 ações não implementadas.',
+                    })
+                  : ''}
                 <FooterContainer>
                   {page <= 1 ? (
                     ''
