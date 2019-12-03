@@ -617,6 +617,8 @@ export default class Report extends Component {
       resolutiondone: this.state.resolutiondone,
       bbsexpect: this.state.bbsexpect,
       bbsdone: this.state.bbsdone,
+      safebbsdone: this.state.safebbsdone,
+      safebbsexpect: this.state.safebbsexpect,
       inpectionsexpect: this.state.inpectionsexpect,
       inpectionsdone: this.state.inpectionsdone,
       briefingexpect: this.state.briefingexpect,
@@ -735,11 +737,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.pyramidexpect
-                      }
+                      value={this.state.pyramidexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -754,9 +752,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.pyramiddone
-                      }
+                      value={this.state.pyramiddone}
                     />
                   </FormGroup>
                 </Row>
@@ -777,11 +773,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.resolutionexpect
-                      }
+                      value={this.state.resolutionexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -798,11 +790,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.resolutiondone
-                      }
+                      value={this.state.resolutiondone}
                     />
                   </FormGroup>
                 </Row>
@@ -823,9 +811,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.bbsexpect
-                      }
+                      value={this.state.bbsexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -840,9 +826,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.bbsdone
-                      }
+                      value={this.state.bbsdone}
                     />
                   </FormGroup>
                 </Row>
@@ -863,11 +847,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.safebbsexpect
-                      }
+                      value={this.state.safebbsexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -882,9 +862,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.safebbsdone
-                      }
+                      value={this.state.safebbsdone}
                     />
                   </FormGroup>
                 </Row>
@@ -905,11 +883,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.inpectionsexpect
-                      }
+                      value={this.state.inpectionsexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -924,11 +898,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.inpectionsdone
-                      }
+                      value={this.state.inpectionsdone}
                     />
                   </FormGroup>
                 </Row>
@@ -949,11 +919,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.briefingexpect
-                      }
+                      value={this.state.briefingexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -968,11 +934,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.briefingdone
-                      }
+                      value={this.state.briefingdone}
                     />
                   </FormGroup>
                 </Row>
@@ -993,11 +955,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.actionplanexpect
-                      }
+                      value={this.state.actionplanexpect}
                       max="100"
                     />
                   </FormGroup>
@@ -1013,11 +971,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.actionplandone
-                      }
+                      value={this.state.actionplandone}
                       max="100"
                     />
                   </FormGroup>
@@ -1039,9 +993,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.pasexpect
-                      }
+                      value={this.state.pasexpect}
                       max="100"
                     />
                   </FormGroup>
@@ -1057,9 +1009,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.pasdone
-                      }
+                      value={this.state.pasdone}
                       max="100"
                     />
                   </FormGroup>
@@ -1081,11 +1031,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.trainingexpect
-                      }
+                      value={this.state.trainingexpect}
                       max="100"
                     />
                   </FormGroup>
@@ -1101,9 +1047,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.trainindone
-                      }
+                      value={this.state.trainindone}
                       max="100"
                     />
                   </FormGroup>
@@ -1125,9 +1069,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.examsexpect
-                      }
+                      value={this.state.examsexpect}
                       max="100"
                     />
                   </FormGroup>
@@ -1143,9 +1085,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.examsdone
-                      }
+                      value={this.state.examsdone}
                       max="100"
                     />
                   </FormGroup>
@@ -1167,9 +1107,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.wiexpect
-                      }
+                      value={this.state.wiexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -1184,9 +1122,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.widone
-                      }
+                      value={this.state.widone}
                     />
                   </FormGroup>
                 </Row>
@@ -1207,11 +1143,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.checklistexpect
-                      }
+                      value={this.state.checklistexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -1226,11 +1158,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.checklistdone
-                      }
+                      value={this.state.checklistdone}
                     />
                   </FormGroup>
                 </Row>
@@ -1251,11 +1179,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.driverexpect
-                      }
+                      value={this.state.driverexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -1270,9 +1194,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.driverdone
-                      }
+                      value={this.state.driverdone}
                     />
                   </FormGroup>
                 </Row>
@@ -1295,11 +1217,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.maintenanceexpect
-                      }
+                      value={this.state.maintenanceexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -1314,11 +1232,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.maintenancedone
-                      }
+                      value={this.state.maintenancedone}
                     />
                   </FormGroup>
                 </Row>
@@ -1341,11 +1255,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.emergencyequipexpect
-                      }
+                      value={this.state.emergencyequipexpect}
                       max="100"
                     />
                   </FormGroup>
@@ -1363,11 +1273,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.emergencyequipdone
-                      }
+                      value={this.state.emergencyequipdone}
                       max="100"
                     />
                   </FormGroup>
@@ -1391,11 +1297,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.actionontimeexpect
-                      }
+                      value={this.state.actionontimeexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -1412,11 +1314,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null
-                          ? 0
-                          : fullPreventive.aciontontimedone
-                      }
+                      value={this.state.aciontontimedone}
                     />
                   </FormGroup>
                 </Row>
@@ -1437,9 +1335,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.tifrexpect
-                      }
+                      value={this.state.tifrexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -1454,9 +1350,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.tifrdone
-                      }
+                      value={this.state.tifrdone}
                     />
                   </FormGroup>
                 </Row>
@@ -1477,9 +1371,7 @@ export default class Report extends Component {
                         });
                         this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.ltifrexpect
-                      }
+                      value={this.state.ltifrexpect}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -1496,9 +1388,7 @@ export default class Report extends Component {
                         });
                         await this.calculatePreventinveIndex();
                       }}
-                      value={
-                        fullPreventive === null ? 0 : fullPreventive.ltifrdone
-                      }
+                      value={this.state.ltifrdone}
                     />
                   </FormGroup>
                 </Row>
