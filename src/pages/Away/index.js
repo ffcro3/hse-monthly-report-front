@@ -121,11 +121,11 @@ export default class Report extends Component {
   }
 
   async Justify() {
-    const sendMail = await api.post('/justify/cat', {
+    const sendMail = await api.post('/justify/away', {
       user: this.state.reportData.responsible,
       site: this.state.reportData.siteName,
       responsible: this.state.reportData.responsible,
-      cat: this.state.catNumberJustify,
+      away: this.state.awayNumberJustify,
       justify: this.state.justifyExceed,
     });
 

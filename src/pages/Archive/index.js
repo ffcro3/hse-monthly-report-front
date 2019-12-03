@@ -110,7 +110,7 @@ export default class Report extends Component {
       user: this.state.reportData.responsible,
       site: this.state.reportData.siteName,
       responsible: this.state.reportData.responsible,
-      archive: this.state.catNumberJustify,
+      archive: this.state.archiveNumberJustify,
       justify: this.state.justifyExceed,
     });
 
@@ -265,6 +265,7 @@ export default class Report extends Component {
                         onChange={e =>
                           this.setState({
                             number: e.target.value,
+                            archiveNumberJustify: e.target.value,
                             fullArchive: {
                               number: e.target.value,
                             },

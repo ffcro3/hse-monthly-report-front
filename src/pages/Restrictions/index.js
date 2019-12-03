@@ -434,7 +434,7 @@ export default class Report extends Component {
       user: this.state.reportData.responsible,
       site: this.state.reportData.siteName,
       responsible: this.state.reportData.responsible,
-      restrictions: this.state.catNumberJustify,
+      restrictions: this.state.restrictionNumberJustify,
       justify: this.state.justifyExceed,
     });
 
