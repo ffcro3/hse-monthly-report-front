@@ -592,7 +592,7 @@ export default class Report extends Component {
                         })
                       }
                       value={
-                        fullRestrictions === null ? 0 : fullRestrictions.had
+                        this.state.had
                       }
                     >
                       <Option value="Selecione" selected readonly>
@@ -617,9 +617,7 @@ export default class Report extends Component {
                           })
                         }
                         value={
-                          fullRestrictions === null
-                            ? 0
-                            : fullRestrictions.number
+                          this.state.number
                         }
                       />
                     </FormGroup>
@@ -645,9 +643,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.type1
+                            this.state.type1
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -671,9 +667,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.reason1
+                            this.state.reason1
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -695,9 +689,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.start1
+                            this.state.start1
                           }
                         />
                       </FormGroup>
@@ -713,9 +705,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.end1
+                            this.state.end1
                           }
                         />
                       </FormGroup>
@@ -733,9 +723,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.days1
+                            this.state.days1
                           }
                         />
                       </FormGroup>
@@ -751,9 +739,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.register1
+                            this.state.register1
                           }
                         />
                       </FormGroup>
@@ -769,9 +755,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.name1
+                            this.state.name1
                           }
                           style={{ width: '450px' }}
                         />
@@ -790,9 +774,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.form1
+                            this.state.form1
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -814,9 +796,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.description1
+                            this.state.description1
                           }
                           style={{ width: '650px' }}
                         />
@@ -844,9 +824,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.type2
+                            this.state.type2
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -870,9 +848,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.reason2
+                            this.state.reason2
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -894,9 +870,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.start2
+                            this.state.start2
                           }
                         />
                       </FormGroup>
@@ -912,9 +886,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.end2
+                            this.state.end2
                           }
                         />
                       </FormGroup>
@@ -932,9 +904,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.days2
+                            this.state.days2
                           }
                         />
                       </FormGroup>
@@ -950,9 +920,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.register2
+                            this.state.register2
                           }
                         />
                       </FormGroup>
@@ -968,9 +936,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.name2
+                            this.state.name2
                           }
                           style={{ width: '450px' }}
                         />
@@ -989,9 +955,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.form2
+                            this.state.form2
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1013,9 +977,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.description2
+                            this.state.description2
                           }
                           style={{ width: '650px' }}
                         />
@@ -1043,9 +1005,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.type3
+                            this.state.type3
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1069,9 +1029,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.reason3
+                            this.state.reason3
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1093,9 +1051,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.start3
+                            this.state.start3
                           }
                         />
                       </FormGroup>
@@ -1111,9 +1067,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.end3
+                            this.state.end3
                           }
                         />
                       </FormGroup>
@@ -1131,9 +1085,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.days3
+                            this.state.days3
                           }
                         />
                       </FormGroup>
@@ -1149,9 +1101,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.register3
+                            this.state.register3
                           }
                         />
                       </FormGroup>
@@ -1167,9 +1117,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.name3
+                            this.state.name3
                           }
                           style={{ width: '450px' }}
                         />
@@ -1188,9 +1136,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.form3
+                            this.state.form3
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1212,9 +1158,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.description3
+                            this.state.description3
                           }
                           style={{ width: '650px' }}
                         />
@@ -1242,9 +1186,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.type4
+                            this.state.type4
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1268,9 +1210,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.reason4
+                            this.state.reason4
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1292,9 +1232,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.start4
+                            this.state.start4
                           }
                         />
                       </FormGroup>
@@ -1310,9 +1248,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.end4
+                            this.state.end4
                           }
                         />
                       </FormGroup>
@@ -1330,9 +1266,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.days4
+                            this.state.days4
                           }
                         />
                       </FormGroup>
@@ -1348,9 +1282,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.register4
+                            this.state.register4
                           }
                         />
                       </FormGroup>
@@ -1366,9 +1298,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.name4
+                            this.state.name4
                           }
                           style={{ width: '450px' }}
                         />
@@ -1387,9 +1317,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.form4
+                            this.state.form4
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1411,9 +1339,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.description4
+                            this.state.description4
                           }
                           style={{ width: '650px' }}
                         />
@@ -1441,9 +1367,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.type5
+                            this.state.type5
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1467,9 +1391,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.reason5
+                            this.state.reason5
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1491,9 +1413,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.start5
+                            this.state.start5
                           }
                         />
                       </FormGroup>
@@ -1509,9 +1429,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.end5
+                            this.state.end5
                           }
                         />
                       </FormGroup>
@@ -1529,9 +1447,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.days5
+                            this.state.days5
                           }
                         />
                       </FormGroup>
@@ -1547,9 +1463,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.register5
+                            this.state.register5
                           }
                         />
                       </FormGroup>
@@ -1565,9 +1479,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.name5
+                            this.state.name5
                           }
                           style={{ width: '550px' }}
                         />
@@ -1586,9 +1498,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.form5
+                            this.state.form5
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1610,9 +1520,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.description5
+                            this.state.description5
                           }
                           style={{ width: '650px' }}
                         />
@@ -1640,9 +1548,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.type6
+                            this.state.type6
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1666,9 +1572,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.reason6
+                            this.state.reason6
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1690,9 +1594,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.start6
+                            this.state.start6
                           }
                         />
                       </FormGroup>
@@ -1708,9 +1610,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.end6
+                            this.state.end6
                           }
                         />
                       </FormGroup>
@@ -1728,9 +1628,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.days6
+                            this.state.days6
                           }
                         />
                       </FormGroup>
@@ -1746,9 +1644,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.register6
+                            this.state.register6
                           }
                         />
                       </FormGroup>
@@ -1764,9 +1660,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.name6
+                            this.state.name6
                           }
                           style={{ width: '650px' }}
                         />
@@ -1785,9 +1679,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.form6
+                            this.state.form6
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1809,9 +1701,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.description6
+                            this.state.description6
                           }
                           style={{ width: '650px' }}
                         />
@@ -1839,9 +1729,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.type7
+                            this.state.type7
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1865,9 +1753,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.reason7
+                            this.state.reason7
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -1889,9 +1775,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.start7
+                            this.state.start7
                           }
                         />
                       </FormGroup>
@@ -1907,9 +1791,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.end7
+                            this.state.end7
                           }
                         />
                       </FormGroup>
@@ -1927,9 +1809,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.days7
+                            this.state.days7
                           }
                         />
                       </FormGroup>
@@ -1945,9 +1825,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.register7
+                            this.state.register7
                           }
                         />
                       </FormGroup>
@@ -1963,9 +1841,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.name7
+                            this.state.name7
                           }
                           style={{ width: '650px' }}
                         />
@@ -1984,9 +1860,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.form7
+                            this.state.form7
                           }
                         >
                           <Option value="Selecione" selected readonly>
@@ -2008,9 +1882,7 @@ export default class Report extends Component {
                             })
                           }
                           value={
-                            fullRestrictions === null
-                              ? 0
-                              : fullRestrictions.description7
+                            this.state.description7
                           }
                           style={{ width: '650px' }}
                         />
