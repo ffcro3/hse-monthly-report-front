@@ -29,6 +29,7 @@ import {
   IPContainer,
   ItemContainer,
   IPTitle,
+  ErrorContainer,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -105,8 +106,18 @@ export default class Report extends Component {
     this.props.history.push(loginpath);
   }
 
+  async fixError() {
+    await this.setState({
+      number: 7,
+      error: '',
+      fullAway: {
+        number: 7,
+      },
+    });
+  }
+
   render() {
-    const { error, reportData, fullAway, page, had } = this.state;
+    const { error, reportData, fullAway, page, had, number } = this.state;
     const date = 'Dezembro 2019';
     if (error === 'Você deixou campos em branco.') {
       return (
@@ -127,6 +138,20 @@ export default class Report extends Component {
             <ErrorTitle>Dados inseridos com sucesso. </ErrorTitle>
             <ErrorSubTitle>Verifique o banco.</ErrorSubTitle>
             <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+          </Error>
+        </>
+      );
+    }
+
+    if (error === 'Existem mais de 7 Afastamentos.') {
+      return (
+        <>
+          <Error>
+            <ErrorContainer>
+              <ErrorTitle>Existem mais de 7 Afastamentos. </ErrorTitle>
+              <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
+              <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+            </ErrorContainer>
           </Error>
         </>
       );
@@ -211,7 +236,11 @@ export default class Report extends Component {
                     ''
                   )}
                 </Row>
-
+                {number > 7
+                  ? this.setState({
+                      error: 'Existem mais de 7 Afastamentos.',
+                    })
+                  : ''}
                 <FooterContainer>
                   {page <= 1 ? (
                     ''

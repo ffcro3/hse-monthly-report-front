@@ -29,6 +29,7 @@ import {
   IPContainer,
   ItemContainer,
   IPTitle,
+  ErrorContainer,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -78,6 +79,16 @@ export default class Report extends Component {
     console.log(this.state.fullArchive);
   }
 
+  async fixError() {
+    await this.setState({
+      number: 7,
+      error: '',
+      fullArchive: {
+        number: 7,
+      },
+    });
+  }
+
   async fixDateError() {
     await this.setState({
       dateError: null,
@@ -107,7 +118,7 @@ export default class Report extends Component {
   }
 
   render() {
-    const { error, reportData, fullArchive, page, had } = this.state;
+    const { error, reportData, fullArchive, page, had, number } = this.state;
     const date = 'Dezembro 2019';
     if (error === 'Você deixou campos em branco.') {
       return (
@@ -128,6 +139,20 @@ export default class Report extends Component {
             <ErrorTitle>Dados inseridos com sucesso. </ErrorTitle>
             <ErrorSubTitle>Verifique o banco.</ErrorSubTitle>
             <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+          </Error>
+        </>
+      );
+    }
+
+    if (error === 'Existem mais de 7 Arquivamentos.') {
+      return (
+        <>
+          <Error>
+            <ErrorContainer>
+              <ErrorTitle>Existem mais de 7 Arquivamentos. </ErrorTitle>
+              <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
+              <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+            </ErrorContainer>
           </Error>
         </>
       );
@@ -212,7 +237,11 @@ export default class Report extends Component {
                     ''
                   )}
                 </Row>
-
+                {number > 7
+                  ? this.setState({
+                      error: 'Existem mais de 7 Arquivamentos.',
+                    })
+                  : ''}
                 <FooterContainer>
                   {page <= 1 ? (
                     ''

@@ -500,7 +500,7 @@ export default class Report extends Component {
   }
 
   handleGoback() {
-    const loginpath = `/report-mensal/preventive-index/${this.state.actualReport}`;
+    const loginpath = `/report-mensal/archive/${this.state.actualReport}`;
     this.props.history.push(loginpath);
   }
 
