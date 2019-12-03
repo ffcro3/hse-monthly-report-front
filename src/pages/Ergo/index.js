@@ -35,10 +35,13 @@ import {
   InputText,
   InputTextFourth,
   InputTextTriple,
+  ErrorFooter,
+  Justify,
 } from './styles';
 
 import logo from '../../assets/logo.png';
 import safetyLogo from '../../assets/safety_logo.png';
+import { ErrorContainer } from '../Away/styles';
 
 export default class Report extends Component {
   state = {
@@ -79,6 +82,8 @@ export default class Report extends Component {
     implementation7: '',
     phase7: '',
     action7: '',
+    justifyExceed: '',
+    ergoNumberJustify: '',
   };
 
   async componentDidMount() {
@@ -174,6 +179,27 @@ export default class Report extends Component {
     });
   }
 
+  async Justify() {
+    const sendMail = await api.post('/justify/ergo', {
+      user: this.state.reportData.responsible,
+      site: this.state.reportData.siteName,
+      responsible: this.state.reportData.responsible,
+      ergo: this.state.ergoNumberJustify,
+      justify: this.state.justifyExceed,
+    });
+
+    console.log(sendMail);
+
+    await this.setState({
+      error: '',
+      notimplemented: 0,
+      implemented: 'Excedido',
+      fullErgo: {
+        notimplemented: this.state.ergoNumberJustify,
+      },
+    });
+  }
+
   async handleForm() {
     const insertErgo = await api.post('/ergo17', {
       reportid: this.state.actualReport,
@@ -234,9 +260,27 @@ export default class Report extends Component {
       return (
         <>
           <Error>
-            <ErrorTitle>Existem mais de 7 ações não implementadas. </ErrorTitle>
-            <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
-            <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+            <ErrorContainer>
+              <ErrorTitle>
+                Existem mais de 7 ações não implementadas.{' '}
+              </ErrorTitle>
+              <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
+              <Justify
+                onChange={e =>
+                  this.setState({
+                    justifyExceed: e.target.value,
+                  })
+                }
+              ></Justify>
+              <ErrorFooter>
+                <BackButton onClick={() => this.fixError()}>
+                  Cancelar
+                </BackButton>
+                <FowardButton onClick={() => this.Justify()}>
+                  Justificar
+                </FowardButton>
+              </ErrorFooter>
+            </ErrorContainer>
           </Error>
         </>
       );
@@ -303,7 +347,7 @@ export default class Report extends Component {
                           },
                         })
                       }
-                      value={fullErgo === null ? 0 : fullErgo.result}
+                      value={this.state.result}
                     />
                   </FormGroup>
 
@@ -320,7 +364,7 @@ export default class Report extends Component {
                           },
                         })
                       }
-                      value={fullErgo === null ? 0 : fullErgo.actions}
+                      value={this.state.actions}
                     />
                   </FormGroup>
 
@@ -333,75 +377,19 @@ export default class Report extends Component {
                         this.setState({
                           implemented: e.target.value,
                           notimplemented: null,
-                          code1: null,
-                          implementation1: null,
-                          phase1: null,
-                          action1: null,
-                          code2: null,
-                          implementation2: null,
-                          phase2: null,
-                          action2: null,
-                          code3: null,
-                          implementation3: null,
-                          phase3: null,
-                          action3: null,
-                          code4: null,
-                          implementation4: null,
-                          phase4: null,
-                          action4: null,
-                          code5: null,
-                          implementation5: null,
-                          phase5: null,
-                          action5: null,
-                          code6: null,
-                          implementation6: null,
-                          phase6: null,
-                          action6: null,
-                          code7: null,
-                          implementation7: null,
-                          phase7: null,
-                          action7: null,
                           fullErgo: {
                             implemented: e.target.implemented,
-                            notimplemented: null,
-                            code1: null,
-                            implementation1: null,
-                            phase1: null,
-                            action1: null,
-                            code2: null,
-                            implementation2: null,
-                            phase2: null,
-                            action2: null,
-                            code3: null,
-                            implementation3: null,
-                            phase3: null,
-                            action3: null,
-                            code4: null,
-                            implementation4: null,
-                            phase4: null,
-                            action4: null,
-                            code5: null,
-                            implementation5: null,
-                            phase5: null,
-                            action5: null,
-                            code6: null,
-                            implementation6: null,
-                            phase6: null,
-                            action6: null,
-                            code7: null,
-                            implementation7: null,
-                            phase7: null,
-                            action7: null,
                           },
                         })
                       }
-                      value={fullErgo === null ? 0 : fullErgo.implemented}
+                      value={this.state.implemented}
                     >
                       <Option value="Selecione" selected readonly>
                         Selecione
                       </Option>
                       <Option value="Sim">Sim</Option>
                       <Option value="Não">Não</Option>
+                      <Option value="Excedido">Excedido</Option>
                     </SelectInputFourth>
                   </FormGroup>
                   {implemented === 'Não' ? (
@@ -418,7 +406,7 @@ export default class Report extends Component {
                             },
                           });
                         }}
-                        value={fullErgo === null ? 0 : fullErgo.notimplemented}
+                        value={this.state.notimplemented}
                       />
                     </FormGroup>
                   ) : (
@@ -443,7 +431,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.code1}
+                          value={this.state.code1}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -459,9 +447,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            fullErgo === null ? 0 : fullErgo.implementation1
-                          }
+                          value={this.state.implementation1}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -481,7 +467,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.phase1}
+                          value={this.state.phase1}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -511,7 +497,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.action1}
+                          value={this.state.action1}
                         />
                       </FormGroup>
                     </Row>
@@ -536,7 +522,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.code2}
+                          value={this.state.code2}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -552,9 +538,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            fullErgo === null ? 0 : fullErgo.implementation2
-                          }
+                          value={this.state.implementation2}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -574,7 +558,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.phase2}
+                          value={this.state.phase2}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -604,7 +588,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.action2}
+                          value={this.state.action2}
                         />
                       </FormGroup>
                     </Row>
@@ -630,7 +614,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.code3}
+                          value={this.state.code3}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -646,9 +630,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            fullErgo === null ? 0 : fullErgo.implementation3
-                          }
+                          value={this.state.implementation3}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -668,7 +650,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.phase3}
+                          value={this.state.phase3}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -698,7 +680,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.action3}
+                          value={this.state.action3}
                         />
                       </FormGroup>
                     </Row>
@@ -724,7 +706,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.code4}
+                          value={this.state.code4}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -740,9 +722,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            fullErgo === null ? 0 : fullErgo.implementation4
-                          }
+                          value={this.state.implementation4}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -762,7 +742,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.phase4}
+                          value={this.state.phase4}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -792,7 +772,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.action4}
+                          value={this.state.action4}
                         />
                       </FormGroup>
                     </Row>
@@ -818,7 +798,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.code5}
+                          value={this.state.code5}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -834,9 +814,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            fullErgo === null ? 0 : fullErgo.implementation5
-                          }
+                          value={this.state.implementation5}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -856,7 +834,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.phase5}
+                          value={this.state.phase5}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -886,7 +864,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.action5}
+                          value={this.state.action5}
                         />
                       </FormGroup>
                     </Row>
@@ -911,7 +889,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.code6}
+                          value={this.state.code6}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -927,9 +905,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            fullErgo === null ? 0 : fullErgo.implementation6
-                          }
+                          value={this.state.implementation6}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -949,7 +925,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.phase6}
+                          value={this.state.phase6}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -979,7 +955,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.action6}
+                          value={this.state.action6}
                         />
                       </FormGroup>
                     </Row>
@@ -1004,7 +980,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.code7}
+                          value={this.state.code7}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1020,9 +996,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            fullErgo === null ? 0 : fullErgo.implementation7
-                          }
+                          value={this.state.implementation7}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1042,7 +1016,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.phase7}
+                          value={this.state.phase7}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1072,7 +1046,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={fullErgo === null ? 0 : fullErgo.action7}
+                          value={this.state.action7}
                         />
                       </FormGroup>
                     </Row>
