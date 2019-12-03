@@ -495,7 +495,7 @@ export default class Report extends Component {
       description7: this.state.description7,
     });
 
-    const loginpath = `/report-mensal/away/${this.state.actualReport}`;
+    const loginpath = `/report-mensal/cat/${this.state.actualReport}`;
     this.props.history.push(loginpath);
   }
 

@@ -41,7 +41,7 @@ export default class Report extends Component {
     actualReport: null,
     reportData: [],
     fullGreen: [],
-    page: 8,
+    page: 10,
     target: String,
     number: String,
     started: String,
@@ -151,7 +151,7 @@ export default class Report extends Component {
         </>
       );
     }
-    if (page === 8) {
+    if (page === 10) {
       return (
         <>
           <Page>
@@ -321,7 +321,7 @@ export default class Report extends Component {
                   )}
                   {page > 0 <= 10 ? (
                     <FowardButton onClick={() => this.handleForm()}>
-                      Avançar
+                      Enviar
                     </FowardButton>
                   ) : (
                     ''

@@ -223,9 +223,9 @@ export default class Report extends Component {
                   setor, site, mês e ano.
                 </PageSubTitle>
                 <PageSubTitle>
-                  Caso você já tenha iniciado um novo report, por favor,
-                  preencha os campos de setor, site, mês e ano para que possamos
-                  carregar as informações já preenchidas.
+                  Caso você já tenha iniciado um report, por favor, preencha os
+                  campos de setor, site, mês e ano para que possamos carregar as
+                  informações já preenchidas.
                 </PageSubTitle>
               </HeaderInfo>
             </HeaderTitle>
