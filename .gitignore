@@ -3,7 +3,6 @@
 #auth
 
 authAPI.js
-api.js
 
 # dependencies
 /node_modules

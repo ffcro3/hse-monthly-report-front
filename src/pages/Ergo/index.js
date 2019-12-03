@@ -339,15 +339,21 @@ export default class Report extends Component {
                       Resultado do último relátório %
                     </LabelInput>
                     <InputNumberFourth
-                      onChange={e =>
+                      onChange={e => {
                         this.setState({
                           result: e.target.value,
                           fullErgo: {
                             result: e.target.result,
                           },
-                        })
-                      }
+                        });
+                        if (this.state.result > 100) {
+                          this.state.result = 100;
+                        }
+                      }}
                       value={this.state.result}
+                      min="0"
+                      max="100"
+                      maxLength="3"
                     />
                   </FormGroup>
 

@@ -91,80 +91,110 @@ export default class Report extends Component {
     });
 
     this.setState({
-      dhlowned: this.state.fullEnvironment.dhlowned
-        ? this.state.fullEnvironment.dhlowned
-        : '',
-      water: this.state.fullEnvironment.water
-        ? this.state.fullEnvironment.water
-        : '',
-      energy: this.state.fullEnvironment.energy
-        ? this.state.fullEnvironment.energy
-        : '',
-      lgpforklift: this.state.fullEnvironment.lgpforklift
-        ? this.state.fullEnvironment.lgpforklift
-        : '',
-      lgpdining: this.state.fullEnvironment.lgpdining
-        ? this.state.fullEnvironment.lgpdining
-        : '',
-      diesel: this.state.fullEnvironment.diesel
-        ? this.state.fullEnvironment.diesel
-        : '',
-      gasoline: this.state.fullEnvironment.gasoline
-        ? this.state.fullEnvironment.gasoline
-        : '',
-      r22: this.state.fullEnvironment.r22 ? this.state.fullEnvironment.r22 : '',
-      r402b: this.state.fullEnvironment.r402b
-        ? this.state.fullEnvironment.r402b
-        : '',
-      r407c: this.state.fullEnvironment.r407c
-        ? this.state.fullEnvironment.r407c
-        : '',
-      r404a: this.state.fullEnvironment.r404a
-        ? this.state.fullEnvironment.r404a
-        : '',
-      r134a: this.state.fullEnvironment.r134a
-        ? this.state.fullEnvironment.r134a
-        : '',
-      paper: this.state.fullEnvironment.paper
-        ? this.state.fullEnvironment.paper
-        : '',
-      plastic: this.state.fullEnvironment.plastic
-        ? this.state.fullEnvironment.plastic
-        : '',
-      metal: this.state.fullEnvironment.metal
-        ? this.state.fullEnvironment.metal
-        : '',
-      glass: this.state.fullEnvironment.glass
-        ? this.state.fullEnvironment.glass
-        : '',
-      organic: this.state.fullEnvironment.organic
-        ? this.state.fullEnvironment.organic
-        : '',
-      batterymhe: this.state.fullEnvironment.batterymhe
-        ? this.state.fullEnvironment.batterymhe
-        : '',
-      battery: this.state.fullEnvironment.battery
-        ? this.state.fullEnvironment.battery
-        : '',
-      lights: this.state.fullEnvironment.lights
-        ? this.state.fullEnvironment.lights
-        : '',
-      tires: this.state.fullEnvironment.tires
-        ? this.state.fullEnvironment.tires
-        : '',
-      motoroil: this.state.fullEnvironment.motoroil
-        ? this.state.fullEnvironment.motoroil
-        : '',
-      kitchenoil: this.state.fullEnvironment.kitchenoil
-        ? this.state.fullEnvironment.kitchenoil
-        : '',
-      ete: this.state.fullEnvironment.ete ? this.state.fullEnvironment.ete : '',
-      effluent: this.state.fullEnvironment.effluent
-        ? this.state.fullEnvironment.effluent
-        : '',
-      wood: this.state.fullEnvironment.wood
-        ? this.state.fullEnvironment.wood
-        : '',
+      dhlowned:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.dhlowned,
+      water:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.water,
+      energy:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.energy,
+      lgpforklift:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.lgpforklift,
+      lgpdining:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.lgpdining,
+      diesel:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.diesel,
+      gasoline:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.gasoline,
+      r22:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.r22,
+      r402b:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.r402b,
+      r407c:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.r407c,
+      r404a:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.r404a,
+      r134a:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.r134a,
+      paper:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.paper,
+      plastic:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.plastic,
+      metal:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.metal,
+      glass:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.glass,
+      organic:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.organic,
+      batterymhe:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.batterymhe,
+      battery:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.battery,
+      lights:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.lights,
+      tires:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.tires,
+      motoroil:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.motoroil,
+      kitchenoil:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.kitchenoil,
+      ete:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.ete,
+      effluent:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.effluent,
+      wood:
+        this.state.fullEnvironment === null
+          ? ''
+          : this.state.fullEnvironment.wood,
     });
 
     console.log(this.state.fullEnvironment);

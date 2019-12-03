@@ -636,7 +636,7 @@ export default class Report extends Component {
                         Selecione
                       </Option>
                       <Option value="Sim">Sim</Option>
-                      <Option value="Sim">Sim</Option>
+                      <Option value="Não">Não</Option>
                       <Option value="Excedido">Excedido</Option>
                     </SelectInput>
                   </FormGroup>

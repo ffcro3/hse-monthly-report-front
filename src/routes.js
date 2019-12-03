@@ -12,6 +12,7 @@ import Archive from './pages/Archive';
 import Restrictions from './pages/Restrictions';
 import CAT from './pages/CAT';
 import Gogreen from './pages/Gogreen';
+import Finish from './pages/Finish';
 
 export default function Routes() {
   return (
@@ -53,6 +54,7 @@ export default function Routes() {
           exact
           component={Gogreen}
         />
+        <Route path="/report-mensal/finished" exact component={Finish} />
       </Switch>
     </BrowserRouter>
   );
