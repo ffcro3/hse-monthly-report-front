@@ -30,6 +30,8 @@ import {
   ItemContainer,
   IPTitle,
   ErrorContainer,
+  Justify,
+  ErrorFooter,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -44,6 +46,8 @@ export default class Report extends Component {
     page: 7,
     had: '',
     number: '',
+    justifyExceed: '',
+    archiveNumberJustify: '',
   };
 
   async componentDidMount() {
@@ -101,6 +105,27 @@ export default class Report extends Component {
     });
   }
 
+  async Justify() {
+    const sendMail = await api.post('/justify/archive', {
+      user: this.state.reportData.responsible,
+      site: this.state.reportData.siteName,
+      responsible: this.state.reportData.responsible,
+      archive: this.state.catNumberJustify,
+      justify: this.state.justifyExceed,
+    });
+
+    console.log(sendMail);
+
+    await this.setState({
+      error: '',
+      number: 0,
+      had: 'Excedido',
+      fullCAT: {
+        number: this.state.archiveNumberJustify,
+      },
+    });
+  }
+
   async handleForm() {
     const insertArchive = await api.post('/archive', {
       reportid: this.state.actualReport,
@@ -151,7 +176,21 @@ export default class Report extends Component {
             <ErrorContainer>
               <ErrorTitle>Existem mais de 7 Arquivamentos. </ErrorTitle>
               <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
-              <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+              <Justify
+                onChange={e =>
+                  this.setState({
+                    justifyExceed: e.target.value,
+                  })
+                }
+              ></Justify>
+              <ErrorFooter>
+                <BackButton onClick={() => this.fixError()}>
+                  Cancelar
+                </BackButton>
+                <FowardButton onClick={() => this.Justify()}>
+                  Justificar
+                </FowardButton>
+              </ErrorFooter>
             </ErrorContainer>
           </Error>
         </>
@@ -207,13 +246,14 @@ export default class Report extends Component {
                           },
                         })
                       }
-                      value={fullArchive === null ? 0 : fullArchive.had}
+                      value={this.state.had}
                     >
                       <Option value="Selecione" selected readonly>
                         Selecione
                       </Option>
                       <Option value="Sim">Sim</Option>
                       <Option value="Não">Não</Option>
+                      <Option value="Excedido">Execedido</Option>
                     </SelectInput>
                   </FormGroup>
                   {had === 'Sim' ? (
@@ -230,7 +270,7 @@ export default class Report extends Component {
                             },
                           })
                         }
-                        value={fullArchive === null ? 0 : fullArchive.number}
+                        value={this.state.number}
                       />
                     </FormGroup>
                   ) : (

@@ -33,6 +33,8 @@ import {
   InputDateFourth,
   SelectInputFourth,
   InputTextFourth,
+  ErrorFooter,
+  Justify,
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -111,6 +113,8 @@ export default class Report extends Component {
     name7: '',
     form7: '',
     description7: '',
+    justifyExceed: '',
+    restrictionNumberJustify: '',
   };
 
   async componentDidMount() {
@@ -425,6 +429,27 @@ export default class Report extends Component {
     });
   }
 
+  async Justify() {
+    const sendMail = await api.post('/justify/restriction', {
+      user: this.state.reportData.responsible,
+      site: this.state.reportData.siteName,
+      responsible: this.state.reportData.responsible,
+      restrictions: this.state.catNumberJustify,
+      justify: this.state.justifyExceed,
+    });
+
+    console.log(sendMail);
+
+    await this.setState({
+      error: '',
+      number: 0,
+      had: 'Excedido',
+      fullCAT: {
+        number: this.state.catNumberJustify,
+      },
+    });
+  }
+
   async handleForm() {
     const insertASO = await api.post('/restriction', {
       reportid: this.state.actualReport,
@@ -523,7 +548,21 @@ export default class Report extends Component {
                 Existem mais de 7 colaboradores em restrição.{' '}
               </ErrorTitle>
               <ErrorSubTitle>Por favor, justifique.</ErrorSubTitle>
-              <BackButton onClick={() => this.fixError()}>Corrigir</BackButton>
+              <Justify
+                onChange={e =>
+                  this.setState({
+                    justifyExceed: e.target.value,
+                  })
+                }
+              ></Justify>
+              <ErrorFooter>
+                <BackButton onClick={() => this.fixError()}>
+                  Cancelar
+                </BackButton>
+                <FowardButton onClick={() => this.Justify()}>
+                  Justificar
+                </FowardButton>
+              </ErrorFooter>
             </ErrorContainer>
           </Error>
         </>
@@ -591,15 +630,14 @@ export default class Report extends Component {
                           },
                         })
                       }
-                      value={
-                        this.state.had
-                      }
+                      value={this.state.had}
                     >
                       <Option value="Selecione" selected readonly>
                         Selecione
                       </Option>
                       <Option value="Sim">Sim</Option>
-                      <Option value="Não">Não</Option>
+                      <Option value="Sim">Sim</Option>
+                      <Option value="Excedido">Excedido</Option>
                     </SelectInput>
                   </FormGroup>
                   {had === 'Sim' ? (
@@ -611,14 +649,13 @@ export default class Report extends Component {
                         onChange={e =>
                           this.setState({
                             number: e.target.value,
+                            restrictionNumberJustify: e.target.value,
                             fullRestrictions: {
                               number: e.target.value,
                             },
                           })
                         }
-                        value={
-                          this.state.number
-                        }
+                        value={this.state.number}
                       />
                     </FormGroup>
                   ) : (
@@ -642,9 +679,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.type1
-                          }
+                          value={this.state.type1}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -666,9 +701,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.reason1
-                          }
+                          value={this.state.reason1}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -688,9 +721,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.start1
-                          }
+                          value={this.state.start1}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -704,9 +735,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.end1
-                          }
+                          value={this.state.end1}
                         />
                       </FormGroup>
                     </Row>
@@ -722,9 +751,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.days1
-                          }
+                          value={this.state.days1}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -738,9 +765,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.register1
-                          }
+                          value={this.state.register1}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -754,9 +779,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.name1
-                          }
+                          value={this.state.name1}
                           style={{ width: '450px' }}
                         />
                       </FormGroup>
@@ -773,9 +796,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.form1
-                          }
+                          value={this.state.form1}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -795,9 +816,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.description1
-                          }
+                          value={this.state.description1}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -823,9 +842,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.type2
-                          }
+                          value={this.state.type2}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -847,9 +864,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.reason2
-                          }
+                          value={this.state.reason2}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -869,9 +884,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.start2
-                          }
+                          value={this.state.start2}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -885,9 +898,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.end2
-                          }
+                          value={this.state.end2}
                         />
                       </FormGroup>
                     </Row>
@@ -903,9 +914,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.days2
-                          }
+                          value={this.state.days2}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -919,9 +928,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.register2
-                          }
+                          value={this.state.register2}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -935,9 +942,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.name2
-                          }
+                          value={this.state.name2}
                           style={{ width: '450px' }}
                         />
                       </FormGroup>
@@ -954,9 +959,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.form2
-                          }
+                          value={this.state.form2}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -976,9 +979,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.description2
-                          }
+                          value={this.state.description2}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -1004,9 +1005,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.type3
-                          }
+                          value={this.state.type3}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1028,9 +1027,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.reason3
-                          }
+                          value={this.state.reason3}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1050,9 +1047,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.start3
-                          }
+                          value={this.state.start3}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1066,9 +1061,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.end3
-                          }
+                          value={this.state.end3}
                         />
                       </FormGroup>
                     </Row>
@@ -1084,9 +1077,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.days3
-                          }
+                          value={this.state.days3}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1100,9 +1091,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.register3
-                          }
+                          value={this.state.register3}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1116,9 +1105,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.name3
-                          }
+                          value={this.state.name3}
                           style={{ width: '450px' }}
                         />
                       </FormGroup>
@@ -1135,9 +1122,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.form3
-                          }
+                          value={this.state.form3}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1157,9 +1142,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.description3
-                          }
+                          value={this.state.description3}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -1185,9 +1168,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.type4
-                          }
+                          value={this.state.type4}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1209,9 +1190,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.reason4
-                          }
+                          value={this.state.reason4}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1231,9 +1210,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.start4
-                          }
+                          value={this.state.start4}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1247,9 +1224,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.end4
-                          }
+                          value={this.state.end4}
                         />
                       </FormGroup>
                     </Row>
@@ -1265,9 +1240,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.days4
-                          }
+                          value={this.state.days4}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1281,9 +1254,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.register4
-                          }
+                          value={this.state.register4}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1297,9 +1268,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.name4
-                          }
+                          value={this.state.name4}
                           style={{ width: '450px' }}
                         />
                       </FormGroup>
@@ -1316,9 +1285,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.form4
-                          }
+                          value={this.state.form4}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1338,9 +1305,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.description4
-                          }
+                          value={this.state.description4}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -1366,9 +1331,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.type5
-                          }
+                          value={this.state.type5}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1390,9 +1353,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.reason5
-                          }
+                          value={this.state.reason5}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1412,9 +1373,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.start5
-                          }
+                          value={this.state.start5}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1428,9 +1387,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.end5
-                          }
+                          value={this.state.end5}
                         />
                       </FormGroup>
                     </Row>
@@ -1446,9 +1403,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.days5
-                          }
+                          value={this.state.days5}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1462,9 +1417,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.register5
-                          }
+                          value={this.state.register5}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1478,9 +1431,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.name5
-                          }
+                          value={this.state.name5}
                           style={{ width: '550px' }}
                         />
                       </FormGroup>
@@ -1497,9 +1448,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.form5
-                          }
+                          value={this.state.form5}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1519,9 +1468,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.description5
-                          }
+                          value={this.state.description5}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -1547,9 +1494,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.type6
-                          }
+                          value={this.state.type6}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1571,9 +1516,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.reason6
-                          }
+                          value={this.state.reason6}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1593,9 +1536,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.start6
-                          }
+                          value={this.state.start6}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1609,9 +1550,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.end6
-                          }
+                          value={this.state.end6}
                         />
                       </FormGroup>
                     </Row>
@@ -1627,9 +1566,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.days6
-                          }
+                          value={this.state.days6}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1643,9 +1580,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.register6
-                          }
+                          value={this.state.register6}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1659,9 +1594,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.name6
-                          }
+                          value={this.state.name6}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -1678,9 +1611,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.form6
-                          }
+                          value={this.state.form6}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1700,9 +1631,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.description6
-                          }
+                          value={this.state.description6}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -1728,9 +1657,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.type7
-                          }
+                          value={this.state.type7}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1752,9 +1679,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.reason7
-                          }
+                          value={this.state.reason7}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1774,9 +1699,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.start7
-                          }
+                          value={this.state.start7}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1790,9 +1713,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.end7
-                          }
+                          value={this.state.end7}
                         />
                       </FormGroup>
                     </Row>
@@ -1808,9 +1729,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.days7
-                          }
+                          value={this.state.days7}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1824,9 +1743,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.register7
-                          }
+                          value={this.state.register7}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -1840,9 +1757,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.name7
-                          }
+                          value={this.state.name7}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
@@ -1859,9 +1774,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.form7
-                          }
+                          value={this.state.form7}
                         >
                           <Option value="Selecione" selected readonly>
                             Selecione
@@ -1881,9 +1794,7 @@ export default class Report extends Component {
                               },
                             })
                           }
-                          value={
-                            this.state.description7
-                          }
+                          value={this.state.description7}
                           style={{ width: '650px' }}
                         />
                       </FormGroup>
