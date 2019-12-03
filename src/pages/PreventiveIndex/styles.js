@@ -40,6 +40,31 @@ export const ItemContainer = styled.div`
   margin-bottom: -15px;
 `;
 
+export const ResultTop = styled.div`
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  margin-left: 87%;
+  padding: 10px;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  top: 20px;
+  background: ${props => (props.primary ? '#77dd77' : '#c41d3c')};
+  color: ${props => (props.primary ? '#333' : '#fff')};
+  height: 50px;
+  width: 150px;
+  border-radius: 5px;
+  .p {
+    font-size: 18px;
+    font-weight: bold;
+    color: ${props => (props.primary ? '#333' : '#fff')};
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+  }
+`;
+
 export const StrongSubTitle = styled.p`
   @import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
   font-family: 'Lato', sans-serif;
@@ -107,6 +132,19 @@ export const FormGroup = styled.div`
 
 export const InputNumber = styled.input.attrs({
   type: 'number',
+})`
+  margin-top: 10px;
+  height: 40px;
+  width: 430px;
+  border: 1px solid #ccc;
+  color: #333;
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+`;
+
+export const InputText = styled.input.attrs({
+  type: 'text',
 })`
   margin-top: 10px;
   height: 40px;
