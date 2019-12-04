@@ -293,7 +293,7 @@ export default class Report extends Component {
                   )}
                   {page > 0 <= 10 ? (
                     <FowardButton onClick={() => this.handleForm()}>
-                      Avançar
+                      Salvar e Avançar
                     </FowardButton>
                   ) : (
                     ''
