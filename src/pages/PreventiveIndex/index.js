@@ -93,6 +93,10 @@ export default class Report extends Component {
       fullPreventive: JSON.parse(JSON.stringify(response.data[3])),
     });
 
+    window.setInterval(() => {
+      this.calculatePreventinveIndex();
+    }, 2000);
+
     console.log(response);
 
     window.beforeunload = e => {
@@ -503,7 +507,6 @@ export default class Report extends Component {
                           },
                         });
                         e.stopPropagation();
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.pyramidexpect}
                     />
@@ -511,14 +514,15 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="pyramiddone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={async e => {
+                      onChange={e => {
                         this.setState({
                           pyramiddone: e.target.value,
                           fullPreventive: {
                             pyramiddone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
+
+                        console.log(e.type);
                       }}
                       value={this.state.pyramiddone}
                     />
@@ -539,7 +543,6 @@ export default class Report extends Component {
                             resolutionexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.resolutionexpect}
                     />
@@ -556,7 +559,6 @@ export default class Report extends Component {
                             resolutiondone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.resolutiondone}
                     />
@@ -577,7 +579,6 @@ export default class Report extends Component {
                             bbsexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.bbsexpect}
                     />
@@ -592,7 +593,6 @@ export default class Report extends Component {
                             bbsdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.bbsdone}
                     />
@@ -613,7 +613,6 @@ export default class Report extends Component {
                             safebbsexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.safebbsexpect}
                     />
@@ -628,7 +627,6 @@ export default class Report extends Component {
                             safebbsdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.safebbsdone}
                     />
@@ -649,7 +647,6 @@ export default class Report extends Component {
                             inpectionsexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.inpectionsexpect}
                     />
@@ -664,7 +661,6 @@ export default class Report extends Component {
                             inpectionsdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.inpectionsdone}
                     />
@@ -685,7 +681,6 @@ export default class Report extends Component {
                             briefingexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.briefingexpect}
                     />
@@ -700,7 +695,6 @@ export default class Report extends Component {
                             briefingdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.briefingdone}
                     />
@@ -721,7 +715,6 @@ export default class Report extends Component {
                             actionplanexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.actionplanexpect}
                       max="100"
@@ -737,7 +730,6 @@ export default class Report extends Component {
                             actionplandone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.actionplandone}
                       max="100"
@@ -759,7 +751,6 @@ export default class Report extends Component {
                             pasexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.pasexpect}
                       max="100"
@@ -775,7 +766,6 @@ export default class Report extends Component {
                             pasdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.pasdone}
                       max="100"
@@ -797,7 +787,6 @@ export default class Report extends Component {
                             trainingexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.trainingexpect}
                       max="100"
@@ -813,7 +802,6 @@ export default class Report extends Component {
                             trainindone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.trainindone}
                       max="100"
@@ -835,7 +823,6 @@ export default class Report extends Component {
                             examsexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.examsexpect}
                       max="100"
@@ -851,7 +838,6 @@ export default class Report extends Component {
                             examsdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.examsdone}
                       max="100"
@@ -873,7 +859,6 @@ export default class Report extends Component {
                             wiexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.wiexpect}
                     />
@@ -888,7 +873,6 @@ export default class Report extends Component {
                             widone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.widone}
                     />
@@ -909,7 +893,6 @@ export default class Report extends Component {
                             checklistexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.checklistexpect}
                     />
@@ -924,7 +907,6 @@ export default class Report extends Component {
                             checklistdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.checklistdone}
                     />
@@ -945,7 +927,6 @@ export default class Report extends Component {
                             driverexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.driverexpect}
                     />
@@ -960,7 +941,6 @@ export default class Report extends Component {
                             driverdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.driverdone}
                     />
@@ -983,7 +963,6 @@ export default class Report extends Component {
                             maintenanceexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.maintenanceexpect}
                     />
@@ -998,7 +977,6 @@ export default class Report extends Component {
                             maintenancedone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.maintenancedone}
                     />
@@ -1021,7 +999,6 @@ export default class Report extends Component {
                             emergencyequipexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.emergencyequipexpect}
                       max="100"
@@ -1039,7 +1016,6 @@ export default class Report extends Component {
                             emergencyequipdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.emergencyequipdone}
                       max="100"
@@ -1063,7 +1039,6 @@ export default class Report extends Component {
                             actionontimeexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.actionontimeexpect}
                     />
@@ -1080,7 +1055,6 @@ export default class Report extends Component {
                             aciontontimedone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.aciontontimedone}
                     />
@@ -1101,7 +1075,6 @@ export default class Report extends Component {
                             tifrexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.tifrexpect}
                     />
@@ -1116,7 +1089,6 @@ export default class Report extends Component {
                             tifrdone: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.tifrdone}
                     />
@@ -1137,7 +1109,6 @@ export default class Report extends Component {
                             ltifrexpect: e.target.value,
                           },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.ltifrexpect}
                     />
@@ -1145,14 +1116,10 @@ export default class Report extends Component {
                   <FormGroup>
                     <LabelInput htmlFor="ltifrdone">Realizado</LabelInput>
                     <InputNumber
-                      onChange={async e => {
+                      onChange={e => {
                         this.setState({
                           ltifrdone: e.target.value,
-                          fullPreventive: {
-                            ltifrdone: e.target.value,
-                          },
                         });
-                        this.calculatePreventinveIndex();
                       }}
                       value={this.state.ltifrdone}
                     />
@@ -1191,7 +1158,7 @@ export default class Report extends Component {
                   )}
                   {page > 0 <= 10 ? (
                     <FowardButton onClick={() => this.handleForm()}>
-                      Avançar
+                      Salvar e Avançar
                     </FowardButton>
                   ) : (
                     ''

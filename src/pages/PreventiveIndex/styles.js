@@ -24,6 +24,7 @@ export const IPContainer = styled.div`
   padding: 20px;
   border-radius: 4px;
   margin-top: 25px;
+  color: ${props => (props.primary ? '#333' : '#fff')};
 
   .h2 {
     font-size: 24px;
@@ -271,7 +272,7 @@ export const FowardButton = styled.button.attrs({
 })`
   margin-top: 25px;
   height: 40px;
-  width: 120px;
+  width: 140px;
   background: #2b9720;
   border: 0px;
   border-radius: 5px;
