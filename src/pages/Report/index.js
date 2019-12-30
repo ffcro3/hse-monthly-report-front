@@ -101,8 +101,8 @@ export default class Report extends Component {
       month: this.state.month,
     });
 
-    const currentMonth = 01;
-    const currentYear = 2020;
+    const currentMonth = "01";
+    const currentYear = "2020";
 
     const verifyBefore = isBefore(
       new Date(currentYear, currentMonth),
