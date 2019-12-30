@@ -255,7 +255,7 @@ export default class Report extends Component {
       page,
       implemented,
     } = this.state;
-    const date = 'Dezembro 2019';
+    const date = 'Janeiro 2020';
     if (error === 'Existem mais de 7 ações não implementadas.') {
       return (
         <>
@@ -317,7 +317,7 @@ export default class Report extends Component {
                   <PageTitle>
                     Report Mensal de HSE - {reportData.siteName}
                   </PageTitle>
-                  <PageSubTitle>Data Final: 04/12/2019</PageSubTitle>
+                  <PageSubTitle>Data Final: 06/01/2020</PageSubTitle>
                   <PageSubTitle>
                     Responsável: {reportData.responsible}
                   </PageSubTitle>
