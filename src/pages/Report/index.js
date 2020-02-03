@@ -101,8 +101,8 @@ export default class Report extends Component {
       month: this.state.month,
     });
 
-    const currentMonth = "01";
-    const currentYear = "2020";
+    const currentMonth = '02';
+    const currentYear = '2020';
 
     const verifyBefore = isBefore(
       new Date(currentYear, currentMonth),
@@ -150,7 +150,7 @@ export default class Report extends Component {
 
   render() {
     const { sites, sectors, sectorselected, error, dateError } = this.state;
-    const date = 'Janeiro 2020';
+    const date = 'Fevereiro 2020';
     if (error === 'Você deixou campos em branco.') {
       return (
         <>

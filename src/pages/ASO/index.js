@@ -143,7 +143,7 @@ export default class Report extends Component {
 
   render() {
     const { error, reportData, fullASO, page, had, number } = this.state;
-    const date = 'Janeiro 2020';
+    const date = 'Fevereiro 2020';
     if (error === 'Existem mais de 7 ASOs vencidos.') {
       return (
         <>

@@ -255,7 +255,7 @@ export default class Report extends Component {
       page,
       implemented,
     } = this.state;
-    const date = 'Janeiro 2020';
+    const date = 'Fevereiro 2020';
     if (error === 'Existem mais de 7 ações não implementadas.') {
       return (
         <>

@@ -254,7 +254,7 @@ export default class Report extends Component {
 
   render() {
     const { error, reportData, fullEnvironment, page, dhlowned } = this.state;
-    const date = 'Janeiro 2020';
+    const date = 'Fevereiro 2020';
     if (error === 'Você deixou campos em branco.') {
       return (
         <>
