@@ -216,11 +216,7 @@ export default class Report extends Component {
                   <PageTitle>
                     Report Mensal de HSE - {reportData.siteName}
                   </PageTitle>
-                  <PageSubTitle>Data Final: 06/01/2020</PageSubTitle>
-                  <PageSubTitle>
-                    Responsável: {reportData.responsible}
-                  </PageSubTitle>
-                  <PageSubTitle>Supervisor: {reportData.manager}</PageSubTitle>
+                  <PageSubTitle>Data Final: 05/02/2020</PageSubTitle>
                   <PageSubTitle>
                     Observações: Cada página representa um item do report.
                     Preencha as informações e as mesmas serão salvas a cada
