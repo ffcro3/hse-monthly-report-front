@@ -296,6 +296,7 @@ export default class Report extends Component {
                 </Option>
                 <Option value="01">01</Option>
                 <Option value="02">02</Option>
+                <Option value="03">03</Option>
                 <Option value="04">04</Option>
                 <Option value="05">05</Option>
                 <Option value="06">06</Option>
