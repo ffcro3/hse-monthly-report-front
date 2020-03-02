@@ -127,7 +127,7 @@ export default class Report extends Component {
 
   render() {
     const { error, reportData, fullGreen, page, had } = this.state;
-    const date = 'Fevereiro 2020';
+    const date = 'Março 2020';
     if (error === 'Você deixou campos em branco.') {
       return (
         <>
@@ -171,7 +171,7 @@ export default class Report extends Component {
                   <PageTitle>
                     Report Mensal de HSE - {reportData.siteName}
                   </PageTitle>
-                  <PageSubTitle>Data Final: 05/02/2020</PageSubTitle>
+                  <PageSubTitle>Data Final: 05/03/2020</PageSubTitle>
                   <PageSubTitle>
                     Observações: Cada página representa um item do report.
                     Preencha as informações e as mesmas serão salvas a cada

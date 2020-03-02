@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import React, { Component } from 'react';
 import { isAfter, isBefore } from 'date-fns';
 
@@ -101,7 +102,7 @@ export default class Report extends Component {
       month: this.state.month,
     });
 
-    const currentMonth = '02';
+    const currentMonth = '03';
     const currentYear = '2020';
 
     const verifyBefore = isBefore(
@@ -150,7 +151,7 @@ export default class Report extends Component {
 
   render() {
     const { sites, sectors, sectorselected, error, dateError } = this.state;
-    const date = 'Fevereiro 2020';
+    const date = 'Março 2020';
     if (error === 'Você deixou campos em branco.') {
       return (
         <>
@@ -277,7 +278,6 @@ export default class Report extends Component {
                 >
                   Selecione Ano
                 </Option>
-                <Option value="2019">2019</Option>
                 <Option value="2020">2020</Option>
                 <Option value="2021">2021</Option>
               </SelectInput>
