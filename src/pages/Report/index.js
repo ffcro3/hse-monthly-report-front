@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { isAfter, isBefore } from 'date-fns';
 
 import api from '../../services/api';
+import { monthData } from '../../services/monthActual';
 
 import { Header, Page, Container } from '../../Components/index';
 import {
@@ -102,8 +103,8 @@ export default class Report extends Component {
       month: this.state.month,
     });
 
-    const currentMonth = '03';
-    const currentYear = '2020';
+    const currentMonth = monthData.actualMonthNumber;
+    const currentYear = monthData.actualYearNumber;
 
     const verifyBefore = isBefore(
       new Date(currentYear, currentMonth),
@@ -215,7 +216,9 @@ export default class Report extends Component {
                 />
               </HeaderImage>
               <HeaderInfo>
-                <PageTitle>Report Mensal de HSE - {date}</PageTitle>
+                <PageTitle>
+                  Report Mensal de HSE - {monthData.monthAll}
+                </PageTitle>
                 <PageSubTitle>
                   Bem vindo ao novo Reporte Mensal de HSE.
                 </PageSubTitle>

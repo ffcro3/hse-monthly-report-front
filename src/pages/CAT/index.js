@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import api from '../../services/api';
+import { monthData } from '../../services/monthActual';
 
 import { Header, Page, Container } from '../../Components/index';
 import {
@@ -298,7 +299,7 @@ export default class Report extends Component {
 
   render() {
     const { error, reportData, fullCAT, page, had, number } = this.state;
-    const date = 'Março 2020';
+    const date = monthData.monthAll;
     if (error === 'Você deixou campos em branco.') {
       return (
         <>
@@ -374,7 +375,7 @@ export default class Report extends Component {
                   <PageTitle>
                     Report Mensal de HSE - {reportData.siteName}
                   </PageTitle>
-                  <PageSubTitle>Data Final: 04/03/2020</PageSubTitle>
+                  <PageSubTitle>Data Final: {monthData.finalDate}</PageSubTitle>
                   <PageSubTitle>
                     Observações: Cada página representa um item do report.
                     Preencha as informações e as mesmas serão salvas a cada
