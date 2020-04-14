@@ -50,6 +50,7 @@ export default class Report extends Component {
     materialincidenthigh: '',
     materialincidentlow: '',
     hoursworked: '',
+    kilometers: '',
     hourstraining: '',
     hoursbriefing: '',
     incidenthigh: '',
@@ -57,6 +58,7 @@ export default class Report extends Component {
     incidentpath: '',
     incidentenvironment: '',
     lastincident: '',
+    icv: '',
     effectiveness: '',
   };
 
@@ -75,6 +77,9 @@ export default class Report extends Component {
       reportData: JSON.parse(JSON.stringify(response.data[0])),
       fullMonthly: JSON.parse(JSON.stringify(response.data[1])),
     });
+
+    console.log(this.state.reportData);
+    console.log(this.state.fullMonthly);
 
     this.setState({
       efectives:
@@ -129,6 +134,10 @@ export default class Report extends Component {
         JSON.parse(JSON.stringify(response.data[1])) === null
           ? 0
           : JSON.parse(JSON.stringify(response.data[1])).hoursworked,
+      kilometers:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).kilometers,
       hourstraining:
         JSON.parse(JSON.stringify(response.data[1])) === null
           ? 0
@@ -161,6 +170,10 @@ export default class Report extends Component {
         JSON.parse(JSON.stringify(response.data[1])) === null
           ? 0
           : JSON.parse(JSON.stringify(response.data[1])).effectiveness,
+      icv:
+        JSON.parse(JSON.stringify(response.data[1])) === null
+          ? 0
+          : JSON.parse(JSON.stringify(response.data[1])).icv,
     });
   }
 
@@ -202,6 +215,7 @@ export default class Report extends Component {
       materialincidenthigh: this.state.materialincidenthigh,
       materialincidentlow: this.state.materialincidentlow,
       hoursworked: this.state.hoursworked,
+      kilometers: this.state.kilometers,
       hourstraining: this.state.hourstraining,
       hoursbriefing: this.state.hoursbriefing,
       incidenthigh: this.state.incidenthigh,
@@ -210,6 +224,7 @@ export default class Report extends Component {
       incidentenvironment: this.state.incidentenvironment,
       lastincident: this.state.lastincident,
       effectiveness: this.state.effectiveness,
+      icv: this.state.icv,
     });
 
     const loginpath = `/report-mensal/environment/${this.state.actualReport}`;
@@ -256,6 +271,7 @@ export default class Report extends Component {
                     src={safetyLogo}
                     alt="Safety First Logo"
                     style={{ height: 150 }}
+                    onClick={() => this.props.history.push('/')}
                   />
                 </HeaderImage>
                 <HeaderInfo>
@@ -444,7 +460,7 @@ export default class Report extends Component {
                 <Row>
                   <FormGroup>
                     <LabelInput htmlFor="materialincidenthigh">
-                      Acidentel Material de Alto Potencial
+                      Acidente Material de Alto Potencial
                     </LabelInput>
                     <InputNumber
                       onChange={e =>
@@ -464,7 +480,7 @@ export default class Report extends Component {
                   </FormGroup>
                   <FormGroup>
                     <LabelInput htmlFor="materialincidentlow">
-                      Acidentel Material de Baixo Potencial
+                      Acidente Material de Baixo Potencial
                     </LabelInput>
                     <InputNumber
                       onChange={e =>
@@ -489,7 +505,7 @@ export default class Report extends Component {
                     <LabelInput htmlFor="hoursworked">
                       Total de horas trabalhadas
                     </LabelInput>
-                    <InputNumberTriple
+                    <InputNumber
                       onChange={e =>
                         this.setState({
                           hoursworked: e.target.value,
@@ -502,10 +518,29 @@ export default class Report extends Component {
                     />
                   </FormGroup>
                   <FormGroup>
+                    <LabelInput htmlFor="kilometersdone">
+                      Total de quilômetros rodados
+                    </LabelInput>
+                    <InputNumber
+                      onChange={e =>
+                        this.setState({
+                          kilometers: e.target.value,
+                          fullMonthly: {
+                            kilometers: e.target.value,
+                          },
+                        })
+                      }
+                      value={fullMonthly === null ? 0 : fullMonthly.kilometers}
+                    />
+                  </FormGroup>
+                </Row>
+
+                <Row>
+                  <FormGroup>
                     <LabelInput htmlFor="hourstraining">
                       Horas treinadas em HSE
                     </LabelInput>
-                    <InputNumberTriple
+                    <InputNumber
                       onChange={e =>
                         this.setState({
                           hourstraining: e.target.value,
@@ -523,7 +558,7 @@ export default class Report extends Component {
                     <LabelInput htmlFor="hoursbriefing">
                       Horas Briefing
                     </LabelInput>
-                    <InputNumberTriple
+                    <InputNumber
                       onChange={e =>
                         this.setState({
                           hoursbriefing: e.target.value,
@@ -634,6 +669,24 @@ export default class Report extends Component {
                       }
                     />
                   </FormGroup>
+                  <FormGroup>
+                    <LabelInput htmlFor="effectiveness">
+                      Total de incidentes com colisão de veículos
+                    </LabelInput>
+                    <InputNumber
+                      onChange={e =>
+                        this.setState({
+                          icv: e.target.value,
+                          fullMonthly: {
+                            icv: e.target.value,
+                          },
+                        })
+                      }
+                      value={fullMonthly === null ? 0 : fullMonthly.icv}
+                    />
+                  </FormGroup>
+                </Row>
+                <Row>
                   <FormGroup>
                     <LabelInput htmlFor="effectiveness">
                       Efetivadade da gestão (em porcentagem)
