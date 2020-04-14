@@ -107,7 +107,7 @@ export const InputDate = styled.input.attrs({
 })`
   margin-top: 10px;
   height: 40px;
-  width: 290px;
+  width: 430px;
   border: 1px solid #ccc;
   color: #333;
   background: #fff;

@@ -303,7 +303,11 @@ export default class Report extends Component {
         <>
           <Page>
             <Header>
-              <img src={logo} alt="SafetyBBSlogo" />
+              <img
+                src={logo}
+                alt="SafetyBBSlogo"
+                onClick={() => this.props.history.push('/')}
+              />
             </Header>
             <Container>
               <HeaderTitle>
@@ -392,6 +396,7 @@ export default class Report extends Component {
                       </Option>
                       <Option value="Sim">Sim</Option>
                       <Option value="Não">Não</Option>
+                      <Option value="N/A">N/A</Option>
                       <Option value="Excedido">Excedido</Option>
                     </SelectInputFourth>
                   </FormGroup>
