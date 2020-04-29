@@ -227,8 +227,16 @@ export default class Report extends Component {
       icv: this.state.icv,
     });
 
-    const loginpath = `/report-mensal/environment/${this.state.actualReport}`;
-    this.props.history.push(loginpath);
+    if (
+      this.state.reportData.siteName === 'POLAR TRUCK TRANSPORTES' ||
+      this.state.reportData.siteName === 'RIO LOPES TRANSPORTES'
+    ) {
+      const loginpath = `/report-mensal/finished`;
+      return this.props.history.push(loginpath);
+    } else {
+      const loginpath = `/report-mensal/environment/${this.state.actualReport}`;
+      this.props.history.push(loginpath);
+    }
   }
 
   render() {
