@@ -5,5 +5,5 @@ export const monthData = {
   finalDate: '05/05/2020',
   monthAll: 'Maio 2020',
   authorization:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYWEwOWFlYTFmOWY5MGRjYmI5N2RmYiIsImlhdCI6MTU4ODk1ODM4OCwiZXhwIjoxNTg5NTYzMTg4fQ.cBHxpVlRlmTpGUKeg99ddGirRnkd536KjJSwT-j7K9w',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYWEwOWFlYTFmOWY5MGRjYmI5N2RmYiIsImlhdCI6MTU5MDA2OTg1MSwiZXhwIjoxNTkwNjc0NjUxfQ.INzVI852a-xcLPuim1WV7kTIPL3NaF3gCWrhF5_t1s4',
 };
