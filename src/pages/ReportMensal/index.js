@@ -233,6 +233,10 @@ export default class Report extends Component {
     ) {
       const loginpath = `/report-mensal/finished`;
       return this.props.history.push(loginpath);
+    }
+    if (this.state.reportData.siteName === 'CLM LOUVEIRA') {
+      const loginpath = `/report-mensal/environment/clm/predio5/${this.state.actualReport}`;
+      return this.props.history.push(loginpath);
     } else {
       const loginpath = `/report-mensal/environment/${this.state.actualReport}`;
       this.props.history.push(loginpath);

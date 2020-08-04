@@ -4,6 +4,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Report from './pages/Report';
 import ReportMensal from './pages/ReportMensal';
 import Environment from './pages/Environment';
+import Predio5 from './pages/CLM/Predio5';
+import Predio6 from './pages/CLM/Predio6';
+import Predio7 from './pages/CLM/Predio7';
 import PreventiveIndex from './pages/PreventiveIndex';
 import ASO from './pages/ASO';
 import Away from './pages/Away';
@@ -29,6 +32,21 @@ export default function Routes() {
           path="/report-mensal/environment/:report"
           exact
           component={Environment}
+        />
+        <Route
+          path="/report-mensal/environment/clm/predio5/:report"
+          exact
+          component={Predio5}
+        />
+        <Route
+          path="/report-mensal/environment/clm/predio6/:report"
+          exact
+          component={Predio6}
+        />
+        <Route
+          path="/report-mensal/environment/clm/predio7/:report"
+          exact
+          component={Predio7}
         />
         <Route
           path="/report-mensal/preventive-index/:report"
